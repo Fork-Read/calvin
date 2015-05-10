@@ -1,12 +1,30 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express = require('express'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    passport = require('passport'),
+    OAuth2Strategy = require('passport-oauth').OAuth2Strategy,
+    mongoose = require('mongoose'),
+    session = require('express-session'),
+    UserModel = require('./models/UserModel');
 
-var passport = require('passport'),
-    OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
+// Here we find an appropriate database to connect to, defaulting to
+// localhost if we don't find one.
+var uristring = process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL ||
+    'mongodb://localhost:27017/calvin';
+
+// Makes connection asynchronously.  Mongoose will queue up database
+// operations and release them when the connection is complete.
+mongoose.connect(uristring, function (err, res) {
+    if (err) {
+        console.log('ERROR connecting to: ' + uristring + '. ' + err);
+    } else {
+        console.log('Succeeded connected to: ' + uristring);
+    }
+});
 
 passport.use('provider', new OAuth2Strategy({
         authorizationURL: 'https://accounts.google.com/o/oauth2/auth',
@@ -16,10 +34,12 @@ passport.use('provider', new OAuth2Strategy({
         callbackURL: 'http://localhost:3000/auth/provider/callback'
     },
     function (accessToken, refreshToken, profile, done) {
-        // User.findOrCreate(..., function (err, user) {
+        // UserModel.findOneOrCreate({
+        //     'email': profile.email
+        // }, function (err, user) {
         //     done(err, user);
         // });
-        console.log(accessToken, refreshToken, profile, done);
+        console.log(accessToken);
         done(null, {});
     }
 ));
@@ -29,14 +49,16 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (id, done) {
-    // User.findById(id, function (err, user) {
-    //     done(err, user);
-    // });
-    done(null, {});
+    console.log('deserializeUser');
+    UserModel.findOne({
+        '_id': id
+    }, function (err, user) {
+        done(err, user);
+    });
 });
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./routes/index'),
+    users = require('./routes/users');
 
 var app = express();
 
@@ -55,6 +77,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: true
+    }
+}))
 
 app.use('/', routes);
 app.use('/users', users);
