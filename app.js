@@ -5,6 +5,36 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var passport = require('passport'),
+    OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
+
+passport.use('provider', new OAuth2Strategy({
+        authorizationURL: 'https://accounts.google.com/o/oauth2/auth',
+        tokenURL: 'https://accounts.google.com/o/oauth2/token',
+        clientID: '994809358369-7pm7ohj0mpt01kmnf57nqof6scjvhsl7.apps.googleusercontent.com',
+        clientSecret: 'xUdND09lJMoZZJbKoZN2UhmP',
+        callbackURL: 'http://localhost:3000/auth/provider/callback'
+    },
+    function (accessToken, refreshToken, profile, done) {
+        // User.findOrCreate(..., function (err, user) {
+        //     done(err, user);
+        // });
+        console.log(accessToken, refreshToken, profile, done);
+        done(null, {});
+    }
+));
+
+passport.serializeUser(function (user, done) {
+    done(null, '123456');
+});
+
+passport.deserializeUser(function (id, done) {
+    // User.findById(id, function (err, user) {
+    //     done(err, user);
+    // });
+    done(null, {});
+});
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -23,9 +53,19 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
+app.get('/auth/provider', passport.authenticate('provider', {
+    scope: 'email'
+}));
+app.get('/auth/provider/callback',
+    passport.authenticate('provider', {
+        successRedirect: '/',
+        failureRedirect: '/register'
+    }));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
