@@ -26,7 +26,6 @@ passport.use(new GoogleStrategy({
             if (err) {
                 return console.error(err);
             }
-            console.log(profile.displayName, profile.email, profile._json.image.url, profile.id);
 
             if (!user) {
                 var newUser = new UserModel({
@@ -44,11 +43,9 @@ passport.use(new GoogleStrategy({
                     if (err) {
                         return console.error(err);
                     }
-                    console.log(newUser);
                     return done(err, newUser);
                 });
             } else {
-                console.log(user);
                 return done(err, user);
             }
         });
@@ -101,32 +98,17 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(session({
     secret: 'keyboard cat',
-    resave: false,
+    resave: true,
+    name: 'calvin',
     saveUninitialized: true,
     cookie: {
         secure: true
     }
 }));
-
-app.get('/auth/google',
-    passport.authenticate('google', {
-        scope: [
-            'https://www.googleapis.com/auth/plus.login',
-            'https://www.googleapis.com/auth/plus.me',
-            'email',
-            'https://www.googleapis.com/auth/contacts.readonly'
-        ]
-    }));
-
-app.get('/auth/google/callback',
-    passport.authenticate('google', {
-        successRedirect: '/',
-        failureRedirect: '/register'
-    }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
