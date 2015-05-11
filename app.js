@@ -4,11 +4,68 @@ var express = require('express'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
-    passport = require('passport'),
-    OAuth2Strategy = require('passport-oauth').OAuth2Strategy,
     mongoose = require('mongoose'),
     session = require('express-session'),
+    passport = require('passport'),
+    _ = require('underscore'),
     UserModel = require('./models/UserModel');
+
+var GoogleStrategy = require('passport-google-oauth2').Strategy;
+
+passport.use(new GoogleStrategy({
+        clientID: '994809358369-7pm7ohj0mpt01kmnf57nqof6scjvhsl7.apps.googleusercontent.com',
+        clientSecret: 'xUdND09lJMoZZJbKoZN2UhmP',
+        callbackURL: "http://localhost:3000/auth/google/callback",
+        passReqToCallback: true
+    },
+    function (request, accessToken, refreshToken, profile, done) {
+
+        UserModel.findOne({
+            'email': profile.email
+        }, function (err, user) {
+            if (err) {
+                return console.error(err);
+            }
+            console.log(profile.displayName, profile.email, profile._json.image.url, profile.id);
+
+            if (!user) {
+                var newUser = new UserModel({
+                    'name': profile.displayName,
+                    'email': profile.email,
+                    'pictureUrl': profile._json.image.url.replace('?sz=50', '?sz=300'),
+                    'contactNo': '',
+                    'website': '',
+                    'isOrganisation': false,
+                    'projects': [],
+                    'providerId': profile.id
+                });
+
+                newUser.save(function (err, newUser) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    console.log(newUser);
+                    return done(err, newUser);
+                });
+            } else {
+                console.log(user);
+                return done(err, user);
+            }
+        });
+    }
+));
+
+passport.serializeUser(function (user, done) {
+    done(null, user._id);
+});
+
+passport.deserializeUser(function (id, done) {
+    User.findOne({
+        '_id': id
+    }, function (err, user) {
+        done(err, user);
+    });
+});
 
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.
@@ -24,37 +81,6 @@ mongoose.connect(uristring, function (err, res) {
     } else {
         console.log('Succeeded connected to: ' + uristring);
     }
-});
-
-passport.use('provider', new OAuth2Strategy({
-        authorizationURL: 'https://accounts.google.com/o/oauth2/auth',
-        tokenURL: 'https://accounts.google.com/o/oauth2/token',
-        clientID: '994809358369-7pm7ohj0mpt01kmnf57nqof6scjvhsl7.apps.googleusercontent.com',
-        clientSecret: 'xUdND09lJMoZZJbKoZN2UhmP',
-        callbackURL: 'http://localhost:3000/auth/provider/callback'
-    },
-    function (accessToken, refreshToken, profile, done) {
-        // UserModel.findOneOrCreate({
-        //     'email': profile.email
-        // }, function (err, user) {
-        //     done(err, user);
-        // });
-        console.log(accessToken);
-        done(null, {});
-    }
-));
-
-passport.serializeUser(function (user, done) {
-    done(null, '123456');
-});
-
-passport.deserializeUser(function (id, done) {
-    console.log('deserializeUser');
-    UserModel.findOne({
-        '_id': id
-    }, function (err, user) {
-        done(err, user);
-    });
 });
 
 var routes = require('./routes/index'),
@@ -84,18 +110,26 @@ app.use(session({
     cookie: {
         secure: true
     }
-}))
-
-app.use('/', routes);
-app.use('/users', users);
-app.get('/auth/provider', passport.authenticate('provider', {
-    scope: 'email'
 }));
-app.get('/auth/provider/callback',
-    passport.authenticate('provider', {
+
+app.get('/auth/google',
+    passport.authenticate('google', {
+        scope: [
+            'https://www.googleapis.com/auth/plus.login',
+            'https://www.googleapis.com/auth/plus.me',
+            'email',
+            'https://www.googleapis.com/auth/contacts.readonly'
+        ]
+    }));
+
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
         successRedirect: '/',
         failureRedirect: '/register'
     }));
+
+app.use('/', routes);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
