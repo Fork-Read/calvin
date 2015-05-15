@@ -1,7 +1,7 @@
 define([
-    'underscore', 'backbone', 'text!templates/home.tmpl'
-], function (_, Backbone, homeTemplate) {
-    var HomeView = Backbone.View.extend({
+    'underscore', 'backbone', 'views/BaseView', 'text!templates/home.tmpl'
+], function (_, Backbone, BaseView, homeTemplate) {
+    var HomeView = BaseView.extend({
         initialize: function () {
             console.log('initialize TestView');
         },

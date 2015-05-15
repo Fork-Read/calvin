@@ -3,8 +3,12 @@ var express = require('express'),
     passport = require('passport');
 
 /* GET home page. */
-router.get('/home', function (req, res, next) {
+router.get('/', function (req, res, next) {
     res.render('index', null);
+});
+
+router.get('/home', function (req, res, next) {
+    res.render('home', null);
 });
 
 router.get('/register', function (req, res, next) {
