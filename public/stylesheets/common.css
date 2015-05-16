@@ -16,7 +16,7 @@ a {
 
 .heading{
 	text-align: center;
-	color: #FFFFFF;
+	color: #111111;
 }
 
 .google-signin{
@@ -26,9 +26,8 @@ a {
 }
 
 .form-container{
-	margin: auto;
-	width: 600px;
-	background-color: #2196F3;
+	display: inline-block;
+	width: 450px;
 	border-radius: 6px;
 	padding-top: 30px; 
 	padding-bottom: 30px; 
@@ -38,11 +37,12 @@ a {
 	margin: auto;
 	width: 300px;
 	padding: 20px;
+	padding-left: 0px;
 }
 
 .form label{
 	display: inline-block;
-	color: #FFFFFF;
+	color: #111111;
 	margin-bottom: 5px;
 }
 

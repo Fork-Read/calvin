@@ -1,5 +1,5 @@
 define([
-    'underscore', 'backbone', 'views/BaseView', 'text!templates/createProject.tmpl'
+    'underscore', 'backbone', 'views/BaseView', 'text!templates/createproject.tmpl'
 ], function (_, Backbone, BaseView, viewTemplate) {
     var CreateProjectView = BaseView.extend({
         initialize: function () {

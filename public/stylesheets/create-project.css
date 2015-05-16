@@ -1,0 +1,6 @@
+.create-project-sidebar-container{
+	display: inline-block;
+	width: 450px;
+	height: 400px;
+	border-right: 1px solid #CCCCCC;
+}
