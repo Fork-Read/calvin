@@ -2,12 +2,20 @@ var express = require('express'),
     router = express.Router(),
     passport = require('passport');
 
+function isLoggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/register');
+    }
+}
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', null);
 });
 
-router.get('/home', function (req, res, next) {
+router.get('/home', isLoggedIn, function (req, res, next) {
     res.render('home', null);
 });
 
@@ -27,7 +35,7 @@ router.get('/auth/google',
 
 router.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/',
+        successRedirect: '/home',
         failureRedirect: '/register'
     })
 );

@@ -57,9 +57,8 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (id, done) {
-    User.findOne({
-        '_id': id
-    }, function (err, user) {
+    UserModel.findById(id, function (err, user) {
+        console.log(user);
         done(err, user);
     });
 });
@@ -100,12 +99,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'keyboard cat',
-    resave: true,
-    name: 'calvin',
-    saveUninitialized: true,
-    cookie: {
-        secure: true
-    }
+    resave: false,
+    saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
