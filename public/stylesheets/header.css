@@ -1,0 +1,40 @@
+header{
+	padding: 20px 35px;
+	color: #FFFFFF;
+	background-color: #3F51B5;
+}
+
+.project-name-container{
+	float: left;
+	width: 150px;
+	padding: 10px;
+	transition: background-color 0.5s ease;
+}
+
+.project-name-container:hover{
+	cursor: pointer;
+	background-color: #3949AB;
+}
+
+.active-project{
+	font-size: 22px;
+	margin-right: 10px;
+}
+
+.header-setting{
+	float: right;
+}
+
+.setting-icon{
+	position: relative;
+	top: 3px;
+	margin-left: 10px;
+}
+
+.setting-icon:hover{
+	cursor: pointer;
+}
+
+.create-project{
+	font-size: 16px;
+}

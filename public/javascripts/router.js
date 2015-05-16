@@ -2,9 +2,11 @@ define([
     'jquery',
     'backbone',
     'events',
+    'views/HeaderView',
     'views/HomeView',
     'views/CreateProjectView'
-], function ($, Backbone, Events, HomeView, CreateProjectView) {
+], function ($, Backbone, Events, HeaderView, HomeView, CreateProjectView) {
+    "use strict";
     var Router = Backbone.Router.extend({
         'routes': {
             '': 'showHome',
@@ -14,11 +16,16 @@ define([
             console.log('Router Initialized');
             var _self = this;
             _self.currentView = null;
+            _self._renderHeaderView();
             Events.on('router:navigate', function (url) {
                 _self.navigate(url, {
                     'trigger': true
                 });
             });
+        },
+        _renderHeaderView: function () {
+            var headerView = new HeaderView();
+            $('header').html(headerView.render().el);
         },
         _renderView: function (view) {
             if (this.currentView) {

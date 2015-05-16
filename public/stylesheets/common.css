@@ -1,11 +1,17 @@
 body {
-	padding: 50px;
+	padding: 0px;
+	margin: 0px;
+	border:0px;
   	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   	background-color: #F8F8F8;
 }
 
 a {
   	color: #00B7FF;
+}
+
+.clear{
+	clear: both;
 }
 
 .heading{
@@ -54,4 +60,11 @@ a {
 	padding: 8px 12px;
 	margin-bottom: 15px;
 	border: 1px solid #C9C9C9;
+}
+
+.btn{
+	display: inline-block;
+	padding: 10px 12px;
+	text-decoration: none;
+	color: #FFFFFF;
 }

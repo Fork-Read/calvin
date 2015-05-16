@@ -1,14 +1,14 @@
 define([
-    'underscore', 'backbone', 'views/BaseView', 'text!templates/home.tmpl'
-], function (_, Backbone, BaseView, homeTemplate) {
+    'underscore', 'backbone', 'views/BaseView', 'views/SearchBarView', 'text!templates/home.tmpl'
+], function (_, Backbone, BaseView, SearchBarView, homeTemplate) {
     var HomeView = BaseView.extend({
         initialize: function () {
-            console.log('initialize TestView');
+            this.searchBarView = new SearchBarView();
         },
         render: function () {
             var _self = this;
-            console.log('render called');
-            _self.$el.html(_.template(homeTemplate, null));
+            _self.$el.append(_self.searchBarView.render().el);
+            _self.$el.append(_.template(homeTemplate, null));
 
             return this;
         }
