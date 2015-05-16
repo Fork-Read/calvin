@@ -1,23 +1,26 @@
 {
-  "name": "code",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "~1.12.0",
-    "cookie-parser": "~1.3.4",
-    "debug": "~2.1.1",
-    "ejs": "^2.3.1",
-    "express": "~4.12.2",
-    "express-session": "^1.11.1",
-    "mongoose": "^4.0.2",
-    "mongoose-find-one-or-create": "^0.2.0",
-    "morgan": "~1.5.1",
-    "passport": "^0.2.1",
-    "passport-google-oauth2": "^0.1.6",
-    "serve-favicon": "~2.2.0",
-    "underscore": "^1.8.3"
-  }
+    "name": "code",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "engines": {
+        "node": "0.10.36"
+    },
+    "dependencies": {
+        "body-parser": "~1.12.0",
+        "cookie-parser": "~1.3.4",
+        "debug": "~2.1.1",
+        "ejs": "^2.3.1",
+        "express": "~4.12.2",
+        "express-session": "^1.11.1",
+        "mongoose": "^4.0.2",
+        "mongoose-find-one-or-create": "^0.2.0",
+        "morgan": "~1.5.1",
+        "passport": "^0.2.1",
+        "passport-google-oauth2": "^0.1.6",
+        "serve-favicon": "~2.2.0",
+        "underscore": "^1.8.3"
+    }
 }
