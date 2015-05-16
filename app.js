@@ -15,7 +15,7 @@ var GoogleStrategy = require('passport-google-oauth2').Strategy;
 passport.use(new GoogleStrategy({
         clientID: '994809358369-7pm7ohj0mpt01kmnf57nqof6scjvhsl7.apps.googleusercontent.com',
         clientSecret: 'xUdND09lJMoZZJbKoZN2UhmP',
-        callbackURL: "http://localhost:3000/auth/google/callback",
+        callbackURL: "https://apibucket.herokuapp.com/auth/google/callback",
         passReqToCallback: true
     },
     function (request, accessToken, refreshToken, profile, done) {
