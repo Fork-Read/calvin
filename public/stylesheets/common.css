@@ -67,15 +67,15 @@ a {
     font-size: 14px;
     padding: 8px 12px;
     margin-bottom: 15px;
-    border: 1px solid #C9C9C9;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    background-color: #3F51B5;
     transition: background-color 0.5s ease;
 }
 
 .form input[type='button']:hover{
     cursor: pointer;
-    background-color: #3F51B5;
-    color: #FFFFFF;
-    border: 1px solid #FFFFFF;
+    background-color: #3949AB;
 }
 
 .btn {
