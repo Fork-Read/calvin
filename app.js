@@ -9,8 +9,7 @@ var express = require('express'),
     passport = require('passport'),
     _ = require('underscore'),
     UserModel = require('./models/UserModel'),
-    parameters = require('./parameters'),
-    MongoStore = require('express-session-mongo');
+    parameters = require('./parameters');
 
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
