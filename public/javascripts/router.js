@@ -1,11 +1,8 @@
 define([
     'jquery',
     'backbone',
-    'events',
-    'views/HeaderView',
-    'views/HomeView',
-    'views/CreateProjectView'
-], function ($, Backbone, Events, HeaderView, HomeView, CreateProjectView) {
+    'events'
+], function ($, Backbone, Events) {
     "use strict";
     var Router = Backbone.Router.extend({
         'routes': {
@@ -24,8 +21,10 @@ define([
             });
         },
         _renderHeaderView: function () {
-            var headerView = new HeaderView();
-            $('header').html(headerView.render().el);
+            require(['views/HeaderView'], function (HeaderView) {
+                var headerView = new HeaderView();
+                $('header').html(headerView.render().el);
+            });
         },
         _renderView: function (view) {
             if (this.currentView) {
@@ -35,12 +34,18 @@ define([
             $('#content').html(view.render().el);
         },
         showHome: function () {
-            var homeView = new HomeView();
-            this._renderView(homeView);
+            var _self = this;
+            require(['views/HomeView'], function (HomeView) {
+                var homeView = new HomeView();
+                _self._renderView(homeView);
+            });
         },
         showCreateProject: function () {
-            var createProjectView = new CreateProjectView();
-            this._renderView(createProjectView);
+            var _self = this;
+            require(['views/CreateProjectView'], function (CreateProjectView) {
+                var createProjectView = new CreateProjectView();
+                _self._renderView(createProjectView);
+            });
         }
     });
     return Router;
