@@ -101,8 +101,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true,
-    store: new MongoStore()
+    saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
