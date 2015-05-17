@@ -4,3 +4,7 @@
     height: 400px;
     border-right: 1px solid #CCCCCC;
 }
+
+.create-project-button:hover{
+	background-color: #3949AB;
+}

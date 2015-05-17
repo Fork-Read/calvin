@@ -6,7 +6,7 @@ define([
 
         },
         events: {
-            'click .create-project': 'showCreateProject'
+            'click .create-project-button': 'showCreateProject'
         },
         render: function () {
             var _self = this;
