@@ -9,7 +9,8 @@ var express = require('express'),
     passport = require('passport'),
     _ = require('underscore'),
     UserModel = require('./models/UserModel'),
-    parameters = require('./parameters');
+    parameters = require('./parameters'),
+    MongoStore = require('express-session-mongo');
 
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
@@ -100,7 +101,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore()
 }));
 app.use(passport.initialize());
 app.use(passport.session());
