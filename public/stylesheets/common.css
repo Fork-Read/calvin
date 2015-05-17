@@ -1,70 +1,70 @@
 body {
-	padding: 0px;
-	margin: 0px;
-	border:0px;
-  	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  	background-color: #F8F8F8;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #F8F8F8;
 }
 
 a {
-  	color: #00B7FF;
+    color: #00B7FF;
 }
 
-.clear{
-	clear: both;
+.clear {
+    clear: both;
 }
 
-.heading{
-	text-align: center;
-	color: #111111;
+.heading {
+    text-align: center;
+    color: #111111;
 }
 
-.google-signin{
-	display: block;
-	margin: auto;
-	width: 300px;
+.google-signin {
+    display: block;
+    margin: auto;
+    width: 300px;
 }
 
-.form-container{
-	display: inline-block;
-	width: 450px;
-	border-radius: 6px;
-	padding-top: 30px; 
-	padding-bottom: 30px; 
+.form-container {
+    display: inline-block;
+    width: 450px;
+    border-radius: 6px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
-.form{
-	margin: auto;
-	width: 300px;
-	padding: 20px;
-	padding-left: 0px;
+.form {
+    margin: auto;
+    width: 300px;
+    padding: 20px;
+    padding-left: 0px;
 }
 
-.form label{
-	display: inline-block;
-	color: #111111;
-	margin-bottom: 5px;
+.form label {
+    display: inline-block;
+    color: #111111;
+    margin-bottom: 5px;
 }
 
-.form input{
-	width: 274px;
-	font-size: 14px;
-	padding: 8px 12px;
-	margin-bottom: 15px;
-	border: 1px solid #C9C9C9;
+.form input {
+    width: 274px;
+    font-size: 14px;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #C9C9C9;
 }
 
-.form textarea{
-	width: 274px;
-	font-size: 14px;
-	padding: 8px 12px;
-	margin-bottom: 15px;
-	border: 1px solid #C9C9C9;
+.form textarea {
+    width: 274px;
+    font-size: 14px;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #C9C9C9;
 }
 
-.btn{
-	display: inline-block;
-	padding: 10px 12px;
-	text-decoration: none;
-	color: #FFFFFF;
+.btn {
+    display: inline-block;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #FFFFFF;
 }

@@ -8,21 +8,22 @@ var express = require('express'),
     session = require('express-session'),
     passport = require('passport'),
     _ = require('underscore'),
-    UserModel = require('./models/UserModel');
+    UserModel = require('./models/UserModel'),
+    parameters = require('./parameters');
 
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 passport.use(new GoogleStrategy({
-        clientID: '994809358369-7pm7ohj0mpt01kmnf57nqof6scjvhsl7.apps.googleusercontent.com',
-        clientSecret: 'xUdND09lJMoZZJbKoZN2UhmP',
-        callbackURL: "https://apibucket.herokuapp.com/auth/google/callback",
+        clientID: parameters.get('google-client-id'),
+        clientSecret: parameters.get('google-client-secret'),
+        callbackURL: parameters.get('google-callback-url'),
         passReqToCallback: true
     },
-    function (request, accessToken, refreshToken, profile, done) {
+    function(request, accessToken, refreshToken, profile, done) {
 
         UserModel.findOne({
             'email': profile.email
-        }, function (err, user) {
+        }, function(err, user) {
             if (err) {
                 return console.error(err);
             }
@@ -39,7 +40,7 @@ passport.use(new GoogleStrategy({
                     'providerId': profile.id
                 });
 
-                newUser.save(function (err, newUser) {
+                newUser.save(function(err, newUser) {
                     if (err) {
                         return console.error(err);
                     }
@@ -52,13 +53,12 @@ passport.use(new GoogleStrategy({
     }
 ));
 
-passport.serializeUser(function (user, done) {
+passport.serializeUser(function(user, done) {
     done(null, user._id);
 });
 
-passport.deserializeUser(function (id, done) {
-    UserModel.findById(id, function (err, user) {
-        console.log(user);
+passport.deserializeUser(function(id, done) {
+    UserModel.findById(id, function(err, user) {
         done(err, user);
     });
 });
@@ -67,11 +67,11 @@ passport.deserializeUser(function (id, done) {
 // localhost if we don't find one.
 var uristring = process.env.MONGOLAB_URI ||
     process.env.MONGOHQ_URL ||
-    'mongodb://localhost:27017/calvin';
+    parameters.get('local-mongodb-url');
 
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
-mongoose.connect(uristring, function (err, res) {
+mongoose.connect(uristring, function(err, res) {
     if (err) {
         console.log('ERROR connecting to: ' + uristring + '. ' + err);
     } else {
@@ -109,7 +109,7 @@ app.use('/', routes);
 app.use('/api/users', users);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -120,7 +120,7 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
+    app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
@@ -131,7 +131,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
