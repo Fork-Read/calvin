@@ -1,8 +1,9 @@
 define([
     'jquery',
     'backbone',
-    'events'
-], function ($, Backbone, Events) {
+    'events',
+    'views/HeaderView'
+], function ($, Backbone, Events, HeaderView) {
     "use strict";
     var Router = Backbone.Router.extend({
         'routes': {
@@ -21,10 +22,8 @@ define([
             });
         },
         _renderHeaderView: function () {
-            require(['views/HeaderView'], function (HeaderView) {
-                var headerView = new HeaderView();
-                $('header').html(headerView.render().el);
-            });
+            var headerView = new HeaderView();
+            $('header').html(headerView.render().el);
         },
         _renderView: function (view) {
             if (this.currentView) {

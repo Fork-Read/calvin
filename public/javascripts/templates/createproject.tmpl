@@ -2,26 +2,28 @@
 	<div class="create-project-sidebar-container">
 	</div>
 	<div class="form-container">
-		<h1 class="heading">Create a New Project</h1>
-		<form class="form">
+		<form class="form create-project-form">
 			<div>
-				<label for="project_name">Project Name</label>
-				<input type="text" name="project_name" />
+				<label for="name">Project Name</label>
+				<input type="text" name="name" required/>
 			</div>
 			
 			<div>
-				<label for="project_description">Project Description</label>
-				<textarea name="project_description" rows="6"></textarea>
+				<label for="description">Project Description</label>
+				<textarea name="description" rows="6"></textarea>
 			</div>
 			
 			<div>
-				<label for="project_github">Github URL (If any)</label>
-				<input type="text" name="project_github" />
+				<label for="github_url">Github URL (If any)</label>
+				<input type="text" name="github_url" />
 			</div>
 			
 			<div>
-				<label for="project_website">Website (If any)</label>
-				<input type="text" name="project_website" />
+				<label for="website">Website (If any)</label>
+				<input type="text" name="website" />
+			</div>
+			<div>
+				<input class="create-project-submit" type="button" value="Submit" />
 			</div>
 		</form>
 	</div>

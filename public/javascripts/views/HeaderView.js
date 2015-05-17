@@ -6,7 +6,8 @@ define([
 
         },
         events: {
-            'click .create-project-button': 'showCreateProject'
+            'click .create-project-button': 'showCreateProject',
+            'click .project-name-container': 'showProjectPage'
         },
         render: function () {
             var _self = this;
@@ -17,6 +18,9 @@ define([
         showCreateProject: function (e) {
             e.preventDefault();
             Events.trigger('router:navigate', 'createProject');
+        },
+        showProjectPage: function () {
+            Events.trigger('router:navigate', '');
         }
     });
     return HeaderView;

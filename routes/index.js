@@ -2,7 +2,7 @@ var express = require('express'),
     router = express.Router(),
     passport = require('passport');
 
-function isLoggedIn(req, res, next) {
+function isAuthenticated(req, res, next) {
     if (req.user) {
         next();
     } else {
@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
     res.render('index', null);
 });
 
-router.get('/home', isLoggedIn, function (req, res, next) {
+router.get('/home', isAuthenticated, function (req, res, next) {
     res.render('home', null);
 });
 

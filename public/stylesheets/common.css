@@ -46,7 +46,7 @@ a {
     margin-bottom: 5px;
 }
 
-.form input {
+.form input[type='text'] {
     width: 274px;
     font-size: 14px;
     padding: 8px 12px;
@@ -56,10 +56,26 @@ a {
 
 .form textarea {
     width: 274px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #C9C9C9;
+}
+
+.form input[type='button'] {
+    width: 297px;
     font-size: 14px;
     padding: 8px 12px;
     margin-bottom: 15px;
     border: 1px solid #C9C9C9;
+    transition: background-color 0.5s ease;
+}
+
+.form input[type='button']:hover{
+    cursor: pointer;
+    background-color: #3F51B5;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
 }
 
 .btn {
