@@ -1,0 +1,63 @@
+.home-container{
+	margin: auto;
+	width: 1000px;
+}
+
+.projects-heading{
+	font-weight: normal;
+	color: #607D8B;
+}
+
+.project-lists{
+	background-color: #EEEEEE;
+}
+
+.project-list-item{
+	text-decoration: none;
+	display: inline-block;
+	margin: 22px;
+	width: 200px;
+	height: 200px;
+	padding: 5px;
+	padding-top: 65px;
+	padding-bottom: 60px;
+	background-color: red;
+	color: #FFFFFF;
+	font-size: 20px;
+	text-align: center;
+	box-sizing: border-box;
+	vertical-align: top;
+	border-radius: 6px;
+}
+
+.tile-1{
+	background-color: #4CAF50;
+}
+
+.tile-1:hover{
+	background-color: #43A047;
+}
+
+.tile-2{
+	background-color: #FF9800;
+}
+
+.tile-2:hover{
+	background-color: #FB8C00;
+}
+
+.tile-3{
+	background-color: #2196F3;
+}
+
+.tile-3:hover{
+	background-color: #1E88E5;
+}
+
+.tile-4{
+	background-color: #FFC107;
+}
+
+.tile-4:hover{
+	background-color: #FFB300;
+}

@@ -1,1 +1,8 @@
-<div>Welcome to Backbone</div>
+<div class="home-container">
+	<h1 class="projects-heading">Projects:</h1>
+	<div class="project-lists">
+		<% _.each(projects, function(project) { %>
+			<a href="#project/jskdvkjdhfbvjk" class="project-list-item tile-1"><%= project.name %></a>
+		<% }) %>
+	</div>
+</div>

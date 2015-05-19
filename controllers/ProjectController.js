@@ -1,4 +1,5 @@
-var ProjectModel = require('../models/ProjectModel'),
+var async = require('async'),
+    ProjectModel = require('../models/ProjectModel'),
     UserModel = require('../models/UserModel');
 
 var ProjectController = {
@@ -29,6 +30,25 @@ var ProjectController = {
                     callback(project);
                 });
             });
+        });
+    },
+    getAllProjects: function (user, callback) {
+        var projectArray = [];
+        UserModel.findById(user, function (err, user) {
+            if (err) return console.error(err);
+            async.each(user.projects,
+                // 2nd param is the function that each item is passed to
+                function (project, next) {
+                    ProjectModel.findById(project.id, function (err, projectDetails) {
+                        if (err) return console.error(err);
+                        projectArray.push(projectDetails);
+                        next();
+                    });
+                },
+                function (err) {
+                    callback(projectArray);
+                }
+            );
         });
     }
 }

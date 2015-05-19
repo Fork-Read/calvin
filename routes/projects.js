@@ -10,6 +10,14 @@ function isAuthenticated(req, res, next) {
     }
 }
 
+router.get('/all', isAuthenticated, function (req, res, next) {
+
+    ProjectController.getAllProjects(req.user._id, function (projects) {
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(projects));
+    });
+});
+
 router.post('/', isAuthenticated, function (req, res, next) {
 
     ProjectController.saveUserProject(req.user._id, req.body, function (project) {
