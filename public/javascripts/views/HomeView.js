@@ -13,7 +13,9 @@ define([
             this.projectCollection.fetch({
                 'reset': true,
                 success: function () {
-                    _self.$el.append(_.template(homeTemplate, {
+                    console.log(_self.projectCollection.toJSON());
+                    var temp = _.template(homeTemplate);
+                    _self.$el.append(temp({
                         projects: _self.projectCollection.toJSON()
                     }));
                 }

@@ -1,9 +1,10 @@
 define([
     'jquery',
+    'underscore',
     'backbone',
     'events',
     'views/HeaderView'
-], function ($, Backbone, Events, HeaderView) {
+], function ($, _, Backbone, Events, HeaderView) {
     "use strict";
     var Router = Backbone.Router.extend({
         'routes': {
@@ -21,6 +22,7 @@ define([
                     'trigger': true
                 });
             });
+            _.templateSettings.variable = "data";
         },
         _renderHeaderView: function () {
             var headerView = new HeaderView();
