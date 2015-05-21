@@ -1,6 +1,6 @@
 define([
-    'underscore', 'backbone', 'views/BaseView', 'models/ProjectModel', 'text!templates/createproject.tmpl'
-], function (_, Backbone, BaseView, ProjectModel, viewTemplate) {
+    'underscore', 'backbone', 'events', 'views/BaseView', 'models/ProjectModel', 'text!templates/createproject.tmpl'
+], function (_, Backbone, Events, BaseView, ProjectModel, viewTemplate) {
     var CreateProjectView = BaseView.extend({
         initialize: function () {
             this.projectModel = new ProjectModel();
@@ -16,7 +16,11 @@ define([
             var data = this.serializeFormData();
             this.projectModel.set(data);
             console.log(this.projectModel.toJSON());
-            this.projectModel.save();
+            this.projectModel.save({}, {
+                success: function (model, response) {
+                    Events.trigger('router:navigate', '');
+                }
+            });
         },
         serializeFormData: function () {
             var formData = this.$el.find('.create-project-form').serializeArray(),
