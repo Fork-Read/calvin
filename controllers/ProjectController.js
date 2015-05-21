@@ -50,6 +50,12 @@ var ProjectController = {
                 }
             );
         });
+    },
+    getProject: function (user, projectId, callback) {
+        ProjectModel.findById(projectId, function (err, project) {
+            if (err) return console.error(err);
+            callback(project);
+        });
     }
 }
 

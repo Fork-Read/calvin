@@ -9,7 +9,7 @@ define([
             'click .create-project-submit': 'saveProject'
         },
         render: function () {
-            this.$el.html(_.template(viewTemplate, null));
+            this.$el.html(_.template(viewTemplate));
             return this;
         },
         saveProject: function () {

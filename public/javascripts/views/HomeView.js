@@ -1,6 +1,6 @@
 define([
-    'underscore', 'backbone', 'views/BaseView', 'views/SearchBarView', 'models/ProjectCollection', 'text!templates/home.tmpl'
-], function (_, Backbone, BaseView, SearchBarView, ProjectCollection, homeTemplate) {
+    'jquery', 'underscore', 'backbone', 'events', 'views/BaseView', 'views/SearchBarView', 'models/ProjectCollection', 'text!templates/home.tmpl'
+], function ($, _, Backbone, Events, BaseView, SearchBarView, ProjectCollection, homeTemplate) {
     var HomeView = BaseView.extend({
         initialize: function () {
             var_self = this;
@@ -19,7 +19,6 @@ define([
                     }));
                 }
             });
-
             return this;
         }
     });

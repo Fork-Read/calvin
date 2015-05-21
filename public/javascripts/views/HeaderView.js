@@ -12,7 +12,7 @@ define([
         render: function () {
             var _self = this;
 
-            _self.$el.html(_.template(viewTemplate, null));
+            _self.$el.html(_.template(viewTemplate));
             return this;
         },
         showCreateProject: function (e) {

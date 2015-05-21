@@ -60,9 +60,15 @@ define([
                 _self._renderView(createProjectView);
             });
         },
-        showProject: function () {
+        showProject: function (id) {
             var _self = this;
             _self._showProjectsDropdown();
+            require(['views/ProjectContainerView'], function (ProjectContainerView) {
+                var projectContainerView = new ProjectContainerView({
+                    'projectId': id
+                });
+                _self._renderView(projectContainerView);
+            });
         }
     });
     return Router;

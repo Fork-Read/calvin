@@ -18,6 +18,14 @@ router.get('/all', isAuthenticated, function (req, res, next) {
     });
 });
 
+router.get('/:id', isAuthenticated, function (req, res, next) {
+
+    ProjectController.getProject(req.user._id, req.param('id'), function (project) {
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(project));
+    });
+});
+
 router.post('/', isAuthenticated, function (req, res, next) {
 
     ProjectController.saveUserProject(req.user._id, req.body, function (project) {
