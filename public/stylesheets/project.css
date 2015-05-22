@@ -1,0 +1,23 @@
+.project-container{
+	margin:auto;
+	margin-top: 50px;
+	width: 1000px;
+}
+
+.project-name{
+	color: #607D8B;
+	font-weight: normal;
+	font-size: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #C9C9C9;
+}
+
+.project-github-url{
+	margin-left: 5px;
+	font-size: 13px;
+}
+
+.project-website{
+	margin-left: 5px;
+	font-size: 13px;
+}

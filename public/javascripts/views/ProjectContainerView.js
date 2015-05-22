@@ -1,7 +1,8 @@
 define([
-    'jquery', 'underscore', 'backbone', 'views/BaseView', 'models/ProjectModel', 'text!templates/projectcontainer.tmpl'
-], function ($, _, Backbone, BaseView, ProjectModel, viewTemplate) {
+    'jquery', 'underscore', 'backbone', 'views/BaseView', 'views/ProjectView', 'models/ProjectModel'
+], function ($, _, Backbone, BaseView, ProjectView, ProjectModel) {
     var ProjectContainerView = BaseView.extend({
+        'className': 'project-container',
         initialize: function (options) {
             var _self = this;
             this.projectModel = new ProjectModel({
@@ -10,14 +11,15 @@ define([
         },
         render: function () {
             var _self = this;
+
             this.projectModel.fetch({
                 'reset': true,
                 success: function () {
-                    var temp = _.template(viewTemplate);
-                    _self.$el.html(temp({
-                        project: _self.projectModel.toJSON()
-                    }));
                     _self.setHeader();
+                    _self.projectView = new ProjectView({
+                        model: _self.projectModel
+                    });
+                    _self.$el.append(_self.projectView.render().el);
                 }
             });
             return this;
