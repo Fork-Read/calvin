@@ -9,7 +9,8 @@ var ProjectController = {
             'name': projectDetails.name,
             'description': projectDetails.description,
             'github_url': projectDetails.github_url,
-            'website': projectDetails.website
+            'website': projectDetails.website,
+            'api_categories': []
         });
 
         newProject.save(function (err, project) {
@@ -20,7 +21,8 @@ var ProjectController = {
 
                 user.projects.push({
                     'id': project._id,
-                    'isOwner': true
+                    'isOwner': true,
+                    'canEdit': true
                 });
 
                 user.update({

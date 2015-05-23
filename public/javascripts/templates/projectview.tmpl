@@ -1,7 +1,21 @@
+<a href="#project/<%= data.project._id %>/edit" class="btn float-right edit-project-button"><i class="fa fa-pencil"></i> Edit Project</a>
 <h1 class="project-name"><%= data.project.name %></h1>
-<div style="margin-top: 10px;">
-	<i class="fa fa-github"></i> <a class="project-github-url" href="<%= data.project.github_url %>"><%= data.project.github_url %></a>
+<div class="margin-10">
+	<i class="fa fa-github"></i> 
+	<% if(data.project.github_url) { %>
+		<a class="project-github-url" href="<%= data.project.github_url %>" target="_blank"><%= data.project.github_url %></a>
+	<% } else { %>
+		<span class="not-available">Not Available</span>
+	<% } %>
 </div>
-<div style="margin-top: 8px">
-	<i class="fa fa-globe"></i> <span class="project-website"><%= data.project.website %></span>
+<div class="margin-10">
+	<i class="fa fa-globe"></i>
+	<% if(data.project.website) { %>
+		<span class="project-website"><%= data.project.website %></span>
+	<% } else { %>
+		<span class="not-available">Not Available</span>
+	<% } %>
+</div>
+<div class="margin-10">
+	<p class="project-desription"><%= data.project.description %></p>
 </div>

@@ -1,3 +1,7 @@
+.not-available{
+	font-size: 13px;
+}
+
 .project-container{
 	margin:auto;
 	margin-top: 50px;
@@ -9,6 +13,7 @@
 	font-weight: normal;
 	font-size: 20px;
 	padding-bottom: 10px;
+	padding-left: 5px;
 	border-bottom: 1px solid #C9C9C9;
 }
 
@@ -20,4 +25,21 @@
 .project-website{
 	margin-left: 5px;
 	font-size: 13px;
+	color: #1E1E1E;
+}
+
+.edit-project-button{
+	color: #1E1E1E;
+	position: relative;
+	bottom: 3px;
+}
+
+.edit-project-button:hover{
+	 color: #00B7FF;
+}
+
+.project-desription{
+	text-align: justify;
+	line-height: 150%;
+	letter-spacing: 120%;
 }
