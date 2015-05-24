@@ -33,6 +33,19 @@ header {
 
 .setting-icon:hover {
     cursor: pointer;
+    color: #00B7FF;
+}
+
+.sign-out{
+    position: relative;
+    top: 3px;
+    margin-left: 10px;
+    color: #FFFFFF;
+}
+
+.sign-out:hover{
+    cursor: pointer;
+    color: #00B7FF;
 }
 
 .create-project {
