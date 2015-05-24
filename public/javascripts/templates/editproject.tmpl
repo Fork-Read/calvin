@@ -1,0 +1,55 @@
+<div class="margin-10">
+  <span class="btn btn-blue save float-right"><i class="fa fa-pencil-square-o"></i> Update</span>
+  <h2 style="position: relative; top: 8px; width: 500px;"><%= data.project.name %></h2>
+</div>
+<div class="clear margin-10 inline" style="padding-top: 30px">
+  <input type="text" class="edit-name" value="<%= data.project.name %>" placeholder="Project Name" />
+</div>
+<div class="margin-10 inline">
+  <input type="text" class="edit-github" value="<%= data.project.github_url %>" placeholder="Gituhb URL" />
+</div>
+<div class="margin-10 inline">
+  <input type="text" class="edit-website" value="<%= data.project.website %>" placeholder="Website" />
+</div>
+<div class="margin-10">
+  <textarea class="edit-desc" rows="6" style="width: 94%; font-size: 13px" placeholder="Project Description"><%= data.project.description %></textarea>
+</div>
+<div class="margin-10" style="background-color:#FFFFFF">
+	<div id="toolbar" class="toolbar ql-toolbar ql-snow" style="border-bottom:1px solid #C9C9C9">
+		<span>
+	  		<select class="ql-size">
+	    		<option value="10px">Small</option>
+	    		<option value="13px" selected>Normal</option>
+	    		<option value="18px">Large</option>
+	    		<option value="32px">Huge</option>
+	  		</select>
+	  	</span>
+  		<span class="ql-format-group">
+  			<span class="ql-format-button ql-bold"></span>
+  			<span class="ql-format-separator"></span>
+  			<span class="ql-format-button ql-italic"></span>
+  			<span class="ql-format-separator"></span>
+  			<span class="ql-format-button ql-underline"></span>
+  			<span class="ql-format-separator"></span>
+  			<span class="ql-format-button ql-strike"></span>
+  		</span>
+  		<span class="ql-format-group">
+  			<span class="ql-format-button ql-list"></span>
+  			<span class="ql-format-separator"></span>
+  			<span class="ql-format-button ql-bullet"></span>
+  			<span class="ql-format-separator"></span>
+  			<select class="ql-align">
+	    		<option value="left"></option>
+	    		<option value="center" selected></option>
+	    		<option value="right"></option>
+	    		<option value="justify"></option>
+	  		</select>
+  		</span>
+  		<span class="ql-format-group">
+  			<span class="ql-format-button ql-link"></span>
+  		</span>
+	</div>
+	<div id="editor" class="editor ql-container ql-snow">
+		<%= data.project.setup_instructions %>
+	</div>
+</div>

@@ -5,6 +5,7 @@ var projectSchema = mongoose.Schema({
     description: String,
     github_url: String,
     website: String,
+    setup_instructions: String,
     api_categories: Array
 });
 

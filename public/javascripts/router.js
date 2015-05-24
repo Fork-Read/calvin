@@ -10,6 +10,7 @@ define([
         'routes': {
             '': 'showHome',
             'project/:id': 'showProject',
+            'project/:id/edit': 'showEditProject',
             'createProject': 'showCreateProject'
         },
         initialize: function () {
@@ -66,6 +67,17 @@ define([
             require(['views/ProjectContainerView'], function (ProjectContainerView) {
                 var projectContainerView = new ProjectContainerView({
                     'projectId': id
+                });
+                _self._renderView(projectContainerView);
+            });
+        },
+        showEditProject: function (id) {
+            var _self = this;
+            _self._hideProjectsDropdown();
+            require(['views/ProjectContainerView'], function (ProjectContainerView) {
+                var projectContainerView = new ProjectContainerView({
+                    'projectId': id,
+                    'type': 'edit'
                 });
                 _self._renderView(projectContainerView);
             });

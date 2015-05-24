@@ -4,12 +4,12 @@ var async = require('async'),
 
 var ProjectController = {
     saveUserProject: function (user_id, projectDetails, callback) {
-
         var newProject = new ProjectModel({
             'name': projectDetails.name,
             'description': projectDetails.description,
             'github_url': projectDetails.github_url,
             'website': projectDetails.website,
+            'setup_instructions': '',
             'api_categories': []
         });
 
@@ -57,6 +57,23 @@ var ProjectController = {
         ProjectModel.findById(projectId, function (err, project) {
             if (err) return console.error(err);
             callback(project);
+        });
+    },
+    updateProject: function (user, projectId, projectData, callback) {
+        ProjectModel.findById(projectId, function (err, project) {
+            if (err) return console.error(err);
+            project.name = projectData.name;
+            project.description = projectData.description;
+            project.github_url = projectData.github_url;
+            project.website = projectData.website;
+            project.setup_instructions = projectData.setup_instructions;
+            project.api_categories = projectData.api_categories;
+            ProjectModel.findOneAndUpdate({
+                '_id': projectId
+            }, project, function (err, project) {
+                if (err) return console.error(err);
+                callback(project);
+            });
         });
     }
 }

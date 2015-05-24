@@ -4,7 +4,8 @@ require.config({
         'jquery': 'libs/jquery',
         'backbone': 'libs/backbone',
         'underscore': 'libs/underscore',
-        'text': 'libs/text'
+        'text': 'libs/text',
+        'quill': 'libs/quill.min'
     },
     'shim': {
         'backbone': {
@@ -13,6 +14,9 @@ require.config({
         },
         'underscore': {
             'exports': "_"
+        },
+        'quill': {
+            'exports': "Quill"
         }
     }
 });

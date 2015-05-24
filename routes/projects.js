@@ -34,4 +34,12 @@ router.post('/', isAuthenticated, function (req, res, next) {
     });
 });
 
+router.put('/:id', isAuthenticated, function (req, res, next) {
+
+    ProjectController.updateProject(req.user._id, req.param('id'), req.body, function (project) {
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(project));
+    });
+});
+
 module.exports = router;
