@@ -42,4 +42,11 @@ router.put('/:id', isAuthenticated, function (req, res, next) {
     });
 });
 
+router.post('/category/add', function (req, res, next) {
+    ProjectController.addCategory(req.user._id, req.body, function (project) {
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(project));
+    });
+});
+
 module.exports = router;

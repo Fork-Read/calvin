@@ -75,6 +75,22 @@ var ProjectController = {
                 callback(project);
             });
         });
+    },
+    addCategory: function (user, categoryData, callback) {
+        ProjectModel.findById(categoryData.projectId, function (err, project) {
+            if (err) return console.error(err);
+            if (project.api_categories.indexOf(categoryData.category) === -1) {
+                project.api_categories.push(categoryData.category);
+                ProjectModel.findOneAndUpdate({
+                    '_id': categoryData.projectId
+                }, project, function (err, project) {
+                    if (err) return console.error(err);
+                    callback(project);
+                });
+            } else {
+                callback(project);
+            }
+        });
     }
 }
 
