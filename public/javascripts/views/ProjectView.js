@@ -1,9 +1,13 @@
 define([
-    'underscore', 'backbone', 'quill', 'views/BaseView', 'text!templates/projectview.tmpl'
-], function (_, Backbone, Quill, BaseView, viewTemplate) {
+    'underscore', 'backbone', 'quill', 'views/BaseView', 'views/DialogView', 'text!templates/projectview.tmpl'
+], function (_, Backbone, Quill, BaseView, DialogView, viewTemplate) {
     var ProjectView = BaseView.extend({
         initialize: function (options) {
-            this.model = options.model;
+            var _self = this;
+            _self.model = options.model;
+        },
+        events: {
+            'click .add-category': 'openAddCategoryDialog'
         },
         render: function () {
             var _self = this;
@@ -19,8 +23,19 @@ define([
                     readOnly: true,
                     theme: 'snow'
                 });
+                _self.openAddCategoryDialog();
             }, 0);
+
+            _self.addCategoryDialog = new DialogView({
+                'title': 'Add Category',
+                'innerHTML': _self.$el.find('.add-category-dialog')
+            });
+
+            _self.$el.append(_self.addCategoryDialog.render().el);
             return this;
+        },
+        openAddCategoryDialog: function () {
+            this.addCategoryDialog.open();
         }
     });
     return ProjectView;

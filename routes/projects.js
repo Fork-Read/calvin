@@ -20,7 +20,7 @@ router.get('/all', isAuthenticated, function (req, res, next) {
 
 router.get('/:id', isAuthenticated, function (req, res, next) {
 
-    ProjectController.getProject(req.user._id, req.param('id'), function (project) {
+    ProjectController.getProject(req.user._id, req.params.id, function (project) {
         res.set('Content-Type', 'application/json');
         res.send(JSON.stringify(project));
     });

@@ -2,6 +2,7 @@ require.config({
     'baseUrl': '/javascripts',
     'paths': {
         'jquery': 'libs/jquery',
+        'jquery-ui': 'libs/jquery-ui',
         'backbone': 'libs/backbone',
         'underscore': 'libs/underscore',
         'text': 'libs/text',
@@ -17,6 +18,9 @@ require.config({
         },
         'quill': {
             'exports': "Quill"
+        },
+        'jquery-ui': {
+            'deps': ['jquery']
         }
     }
 });
