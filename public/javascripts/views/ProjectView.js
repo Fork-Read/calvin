@@ -1,6 +1,6 @@
 define([
-    'underscore', 'backbone', 'quill', 'views/BaseView', 'views/DialogView', 'text!templates/projectview.tmpl'
-], function (_, Backbone, Quill, BaseView, DialogView, viewTemplate) {
+    'jquery', 'underscore', 'backbone', 'quill', 'views/BaseView', 'views/DialogView', 'text!templates/projectview.tmpl'
+], function ($, _, Backbone, Quill, BaseView, DialogView, viewTemplate) {
     var ProjectView = BaseView.extend({
         initialize: function (options) {
             var _self = this;
@@ -23,11 +23,48 @@ define([
                     readOnly: true,
                     theme: 'snow'
                 });
+                _self.openAddCategoryDialog();
             }, 0);
 
             _self.addCategoryDialog = new DialogView({
+                'width': 400,
                 'title': 'Add Category',
-                'innerHTML': _self.$el.find('.add-category-dialog')
+                'innerHTML': _self.$el.find('.add-category-dialog'),
+                'buttons': [{
+                    text: "Cancel",
+                    click: function () {
+                        _self.addCategoryDialog.close();
+                    }
+                }, {
+                    text: "Save",
+                    click: function () {
+                        var categoryName = $.trim($('.new-category-input').val());
+
+                        if (!categoryName) {
+                            _self.updateFeedback('Category name cannot be blank', 'warning');
+                            return;
+                        }
+
+                        var sendObj = {
+                            'projectId': _self.model.get('_id'),
+                            'category': categoryName
+                        };
+
+                        $.ajax({
+                            url: '/api/project/category/add',
+                            'type': 'POST',
+                            'contentType': 'application/json',
+                            'data': JSON.stringify(sendObj),
+                            success: function () {
+                                _self.addCategoryDialog.close();
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+
+                    }
+                }]
             });
 
             _self.$el.append(_self.addCategoryDialog.render().el);
@@ -35,6 +72,11 @@ define([
         },
         openAddCategoryDialog: function () {
             this.addCategoryDialog.open();
+        },
+        updateFeedback: function (html, className) {
+            var _self = this;
+
+            $('.add-category-feedback').html(html).addClass(className).show();
         }
     });
     return ProjectView;

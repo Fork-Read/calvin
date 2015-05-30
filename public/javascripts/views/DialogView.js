@@ -38,6 +38,10 @@ define([
         update: function (options) {
             var _self = this;
             _self.options = $.extend(_self.options, options);
+        },
+        close: function () {
+            var _self = this;
+            $(_self.options.innerHTML).dialog('close');
         }
     });
     return DialogView;

@@ -1,11 +1,12 @@
 var async = require('async'),
+    changeCase = require('change-case'),
     ProjectModel = require('../models/ProjectModel'),
     UserModel = require('../models/UserModel');
 
 var ProjectController = {
     saveUserProject: function (user_id, projectDetails, callback) {
         var newProject = new ProjectModel({
-            'name': projectDetails.name,
+            'name': changeCase.titleCase(projectDetails.name),
             'description': projectDetails.description,
             'github_url': projectDetails.github_url,
             'website': projectDetails.website,
@@ -62,7 +63,7 @@ var ProjectController = {
     updateProject: function (user, projectId, projectData, callback) {
         ProjectModel.findById(projectId, function (err, project) {
             if (err) return console.error(err);
-            project.name = projectData.name;
+            project.name = changeCase.titleCase(projectData.name);
             project.description = projectData.description;
             project.github_url = projectData.github_url;
             project.website = projectData.website;
@@ -77,16 +78,24 @@ var ProjectController = {
         });
     },
     addCategory: function (user, categoryData, callback) {
+        categoryData.category = changeCase.titleCase(categoryData.category);
+
         ProjectModel.findById(categoryData.projectId, function (err, project) {
             if (err) return console.error(err);
+
             if (project.api_categories.indexOf(categoryData.category) === -1) {
                 project.api_categories.push(categoryData.category);
-                ProjectModel.findOneAndUpdate({
+
+                ProjectModel.update({
                     '_id': categoryData.projectId
-                }, project, function (err, project) {
+                }, {
+                    'api_categories': project.api_categories
+                }, function (err, numAffected) {
                     if (err) return console.error(err);
+                    console.log(project);
                     callback(project);
                 });
+
             } else {
                 callback(project);
             }

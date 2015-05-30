@@ -137,3 +137,31 @@ textarea {
 .floating-add-icon:hover{
     cursor: pointer;
 }
+
+.success{
+    padding: 5px 10px;
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.info{
+    padding: 5px 10px;
+    color: #00529B;
+    background-color: #BDE5F8;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.warning{
+    padding: 5px 10px;
+    color: #9F6000;
+    background-color: #FEEFB3;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.error{
+    padding: 5px 10px;
+    color: #D8000C;
+    background-color: #FFBABA;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}

@@ -48,3 +48,9 @@
 	background-color: #FFFFFF;
 	padding: 20px;
 }
+
+.new-category-input{
+	margin: auto;
+	margin-top: 15px;
+	display: block;
+}
