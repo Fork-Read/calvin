@@ -23,7 +23,6 @@ define([
                     readOnly: true,
                     theme: 'snow'
                 });
-                _self.openAddCategoryDialog();
             }, 0);
 
             _self.addCategoryDialog = new DialogView({
