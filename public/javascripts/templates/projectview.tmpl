@@ -19,12 +19,15 @@
 <div class="margin-10 border-bottom">
 	<p class="project-desription"><%= data.project.description %></p>
 </div>
+<% if(data.project.setup_instructions) { %>
 <div class="margin-10 border-bottom">
 	<h2 class="font-18">Setup Instructions</h2>
 	<div id="editor" class="editor ql-container ql-snow">
 		<%= data.project.setup_instructions %>
 	</div>
 </div>
+<% } %>
+<% if(data.project.api_categories.length) { %>
 <div class="margin-10 border-bottom">
 	<h2 class="font-18">API Categories</h2>
 	<ul class="category-list">
@@ -34,6 +37,7 @@
 	</ul>
 	<div class="clear"></div>
 </div>
+<% } %>
 <div class="floating-add-icon add-category" title="Add Category">
 	<i class="fa fa-plus fa-2x"></i>
 </div>
