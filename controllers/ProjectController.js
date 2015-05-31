@@ -92,8 +92,9 @@ var ProjectController = {
                     'api_categories': project.api_categories
                 }, function (err, numAffected) {
                     if (err) return console.error(err);
-                    console.log(project);
-                    callback(project);
+                    callback({
+                        'newCategory': categoryData.category
+                    });
                 });
 
             } else {

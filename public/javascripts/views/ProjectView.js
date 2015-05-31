@@ -56,11 +56,11 @@ define([
                             'type': 'POST',
                             'contentType': 'application/json',
                             'data': JSON.stringify(sendObj),
-                            success: function () {
+                            success: function (data) {
                                 _self.addCategoryDialog.close();
                                 $('.new-category-input').val('');
                                 var categories = _.clone(_self.model.get('api_categories'));
-                                categories.push(categoryName);
+                                categories.push(data.newCategory);
                                 _self.model.set({
                                     'api_categories': categories
                                 });
