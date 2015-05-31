@@ -63,6 +63,10 @@ input[type='text'] {
     border: 1px solid #C9C9C9;
 }
 
+input[type='text']:focus{
+    border-color: #3F51B5;
+}
+
 textarea {
     width: 274px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
