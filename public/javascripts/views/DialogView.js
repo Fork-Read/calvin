@@ -42,6 +42,10 @@ define([
         close: function () {
             var _self = this;
             $(_self.options.innerHTML).dialog('close');
+        },
+        destroy: function () {
+            var _self = this;
+            $(_self.options.innerHTML).dialog('destroy');
         }
     });
     return DialogView;

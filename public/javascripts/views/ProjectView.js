@@ -14,6 +14,11 @@ define([
         render: function () {
             var _self = this;
             var temp = _.template(viewTemplate);
+
+            if (_self.addCategoryDialog) {
+                _self.addCategoryDialog.destroy();
+            }
+
             _self.$el.html(temp({
                 project: _self.model.toJSON()
             }));
@@ -57,13 +62,16 @@ define([
                             'contentType': 'application/json',
                             'data': JSON.stringify(sendObj),
                             success: function (data) {
-                                _self.addCategoryDialog.close();
-                                $('.new-category-input').val('');
-                                var categories = _.clone(_self.model.get('api_categories'));
-                                categories.push(data.newCategory);
-                                _self.model.set({
-                                    'api_categories': categories
-                                });
+                                if (data.newCategory) {
+                                    _self.addCategoryDialog.close();
+                                    var categories = _.clone(_self.model.get('api_categories'));
+                                    categories.push(data.newCategory);
+                                    _self.model.set({
+                                        'api_categories': categories
+                                    });
+                                } else {
+                                    _self.updateFeedback('Category name already present', 'warning');
+                                }
                             },
                             error: function (error) {
                                 console.log(error);
