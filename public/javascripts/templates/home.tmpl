@@ -2,7 +2,7 @@
 	<h1 class="projects-heading">Projects:</h1>
 	<div class="project-lists">
 		<% _.each(data.projects, function(project, index) { %>
-			<a href="#project/<%= project._id %>" class="project-list-item tile-<%= index +1 %>"><%= project.name %></a>
+			<a href="#project/<%= project._id %>" class="project-list-item tile-<%= (index % 4) + 1 %>"><%= project.name %></a>
 		<% }); %>
 	</div>
 </div>

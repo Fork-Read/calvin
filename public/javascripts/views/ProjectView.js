@@ -2,9 +2,11 @@ define([
     'jquery', 'underscore', 'backbone', 'quill', 'views/BaseView', 'views/DialogView', 'text!templates/projectview.tmpl'
 ], function ($, _, Backbone, Quill, BaseView, DialogView, viewTemplate) {
     var ProjectView = BaseView.extend({
+        'className': 'project-view',
         initialize: function (options) {
             var _self = this;
             _self.model = options.model;
+            _self.model.on('change', _self.render, _self);
         },
         events: {
             'click .add-category': 'openAddCategoryDialog'
@@ -12,7 +14,7 @@ define([
         render: function () {
             var _self = this;
             var temp = _.template(viewTemplate);
-            _self.$el.append(temp({
+            _self.$el.html(temp({
                 project: _self.model.toJSON()
             }));
             setTimeout(function () {
@@ -57,6 +59,11 @@ define([
                             success: function () {
                                 _self.addCategoryDialog.close();
                                 $('.new-category-input').val('');
+                                var categories = _.clone(_self.model.get('api_categories'));
+                                categories.push(categoryName);
+                                _self.model.set({
+                                    'api_categories': categories
+                                });
                             },
                             error: function (error) {
                                 console.log(error);
