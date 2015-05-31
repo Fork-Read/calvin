@@ -54,3 +54,15 @@
 	margin-top: 15px;
 	display: block;
 }
+
+.category-list{
+	list-style: none;
+}
+
+.category-list-item{
+	float: left;
+	margin: 10px;
+	padding: 6px 12px;
+	color: #F8F8F8;
+	border-radius: 3px;
+}

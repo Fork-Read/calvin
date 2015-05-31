@@ -56,6 +56,7 @@ define([
                             'data': JSON.stringify(sendObj),
                             success: function () {
                                 _self.addCategoryDialog.close();
+                                $('.new-category-input').val('');
                             },
                             error: function (error) {
                                 console.log(error);

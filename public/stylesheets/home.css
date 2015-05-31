@@ -29,35 +29,3 @@
 	vertical-align: top;
 	border-radius: 6px;
 }
-
-.tile-1{
-	background-color: #3F51B5;
-}
-
-.tile-1:hover{
-	background-color: #43A047;
-}
-
-.tile-2{
-	background-color: #FF9800;
-}
-
-.tile-2:hover{
-	background-color: #FB8C00;
-}
-
-.tile-3{
-	background-color: #3F51B5;
-}
-
-.tile-3:hover{
-	background-color: #1E88E5;
-}
-
-.tile-4{
-	background-color: #FFC107;
-}
-
-.tile-4:hover{
-	background-color: #FFB300;
-}

@@ -16,14 +16,23 @@
 		<span class="not-available">Not Available</span>
 	<% } %>
 </div>
-<div class="margin-10">
+<div class="margin-10 border-bottom">
 	<p class="project-desription"><%= data.project.description %></p>
 </div>
-<div class="margin-10" style="background-color:#FFFFFF;padding:15px">
-	<h2>Setup Instructions</h2>
+<div class="margin-10 border-bottom">
+	<h2 class="font-18">Setup Instructions</h2>
 	<div id="editor" class="editor ql-container ql-snow">
 		<%= data.project.setup_instructions %>
 	</div>
+</div>
+<div class="margin-10 border-bottom">
+	<h2 class="font-18">API Categories</h2>
+	<ul class="category-list">
+		<% _.each(data.project.api_categories,function(category, index){ %>
+			<a href="#project/<%= data.project._id %>/category/<%= category %>" class="category-list-item tile-<%= index+1 %>"><li><i class="fa fa-angle-double-right"></i> <%= category %></li></a>
+		<% }); %>
+	</ul>
+	<div class="clear"></div>
 </div>
 <div class="floating-add-icon add-category" title="Add Category">
 	<i class="fa fa-plus fa-2x"></i>
