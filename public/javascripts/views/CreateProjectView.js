@@ -15,7 +15,6 @@ define([
         saveProject: function () {
             var data = this.serializeFormData();
             this.projectModel.set(data);
-            console.log(this.projectModel.toJSON());
             this.projectModel.save({}, {
                 success: function (model, response) {
                     Events.trigger('router:navigate', '');

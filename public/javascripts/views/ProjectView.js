@@ -23,13 +23,15 @@ define([
                 project: _self.model.toJSON()
             }));
             setTimeout(function () {
-                var fullEditor = new Quill('#editor', {
-                    modules: {
-                        'link-tooltip': true
-                    },
-                    readOnly: true,
-                    theme: 'snow'
-                });
+                if (_self.model.toJSON().setup_instructions) {
+                    var fullEditor = new Quill('#editor', {
+                        modules: {
+                            'link-tooltip': true
+                        },
+                        readOnly: true,
+                        theme: 'snow'
+                    });
+                }
             }, 0);
 
             _self.addCategoryDialog = new DialogView({

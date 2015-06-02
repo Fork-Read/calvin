@@ -11,6 +11,7 @@ define([
             '': 'showHome',
             'project/:id': 'showProject',
             'project/:id/edit': 'showEditProject',
+            'project/:id/category/:category': 'showCategoryPage',
             'createProject': 'showCreateProject'
         },
         initialize: function () {
@@ -81,6 +82,9 @@ define([
                 });
                 _self._renderView(projectContainerView);
             });
+        },
+        showCategoryPage: function (id, category) {
+            console.log(id, name);
         }
     });
     return Router;

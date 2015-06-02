@@ -7,7 +7,6 @@ var userSchema = mongoose.Schema({
     contactNo: String,
     pictureUrl: String,
     isOrganisation: Boolean,
-    projects: Array,
     providerId: String
 });
 

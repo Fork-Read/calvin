@@ -37,7 +37,6 @@ passport.use(new GoogleStrategy({
                     'contactNo': '',
                     'website': '',
                     'isOrganisation': false,
-                    'projects': [],
                     'providerId': profile.id
                 });
 
@@ -122,9 +121,6 @@ app.use(function (req, res, next) {
 });
 
 // error handlers
-
-// development error handler
-// will print stacktrace
 app.use(function (err, req, res, next) {
     if (app.get('env') === 'development') {
         if (err) {
@@ -134,15 +130,5 @@ app.use(function (err, req, res, next) {
         }
     }
 });
-
-// // production error handler
-// // no stacktraces leaked to user
-// app.use(function (err, req, res, next) {
-//     res.status(err.status || 500);
-//     res.render('error', {
-//         message: err.message,
-//         error: {}
-//     });
-// });
 
 module.exports = app;

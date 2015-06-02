@@ -1,7 +1,8 @@
 var async = require('async'),
     changeCase = require('change-case'),
     ProjectModel = require('../models/ProjectModel'),
-    UserModel = require('../models/UserModel');
+    UserModel = require('../models/UserModel'),
+    UserProjectModel = require('../models/UserProjectMappingModel');
 
 var ProjectController = {
     saveUserProject: function (user_id, projectDetails, callback) {
@@ -17,32 +18,29 @@ var ProjectController = {
         newProject.save(function (err, project) {
             if (err) return console.error(err);
 
-            UserModel.findById(user_id, function (err, user) {
+            var newMapping = new UserProjectModel({
+                'user_id': user_id,
+                'project_id': project._id,
+                'isOwner': true,
+                'canEdit': true
+            });
+
+            newMapping.save(function (err, mapping) {
                 if (err) return console.error(err);
-
-                user.projects.push({
-                    'id': project._id,
-                    'isOwner': true,
-                    'canEdit': true
-                });
-
-                user.update({
-                    'projects': user.projects
-                }, function (err, user) {
-                    if (err) return console.error(err);
-                    callback(project);
-                });
+                callback(project);
             });
         });
     },
     getAllProjects: function (user, callback) {
         var projectArray = [];
-        UserModel.findById(user, function (err, user) {
+        UserProjectModel.find({
+            'user_id': user
+        }, function (err, projectmappings) {
             if (err) return console.error(err);
-            async.each(user.projects,
+            async.each(projectmappings,
                 // 2nd param is the function that each item is passed to
-                function (project, next) {
-                    ProjectModel.findById(project.id, function (err, projectDetails) {
+                function (mapping, next) {
+                    ProjectModel.findById(mapping.project_id, function (err, projectDetails) {
                         if (err) return console.error(err);
                         projectArray.push(projectDetails);
                         next();
