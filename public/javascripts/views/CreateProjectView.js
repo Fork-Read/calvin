@@ -2,7 +2,7 @@ define([
     'underscore', 'backbone', 'events', 'views/BaseView', 'models/ProjectModel', 'text!templates/createproject.tmpl'
 ], function (_, Backbone, Events, BaseView, ProjectModel, viewTemplate) {
     var CreateProjectView = BaseView.extend({
-        initialize: function () {
+        onInitialize: function () {
             this.projectModel = new ProjectModel();
         },
         events: {
@@ -28,6 +28,9 @@ define([
                 returnObj[item.name] = item.value;
             });
             return returnObj;
+        },
+        onClose: function () {
+            this.unbind();
         }
     });
     return CreateProjectView;

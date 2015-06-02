@@ -3,7 +3,7 @@ define([
 ], function ($, _, Backbone, Quill, BaseView, DialogView, viewTemplate) {
     var ProjectView = BaseView.extend({
         'className': 'project-view',
-        initialize: function (options) {
+        onInitialize: function (options) {
             var _self = this;
             _self.model = options.model;
             _self.model.on('change', _self.render, _self);
@@ -94,6 +94,13 @@ define([
             var _self = this;
 
             $('.add-category-feedback').html(html).addClass(className).show();
+        },
+        onClose: function () {
+            var _self = this;
+            if (_self.addCategoryDialog) {
+                _self.addCategoryDialog.destroy();
+            }
+            _self.unbind();
         }
     });
     return ProjectView;

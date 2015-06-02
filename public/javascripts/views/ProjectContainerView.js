@@ -3,7 +3,7 @@ define([
 ], function ($, _, Backbone, BaseView, ProjectView, ProjectEditView, ProjectModel) {
     var ProjectContainerView = BaseView.extend({
         'className': 'project-container',
-        initialize: function (options) {
+        onInitialize: function (options) {
             var _self = this;
             this.options = options;
             this.projectModel = new ProjectModel({
@@ -19,13 +19,13 @@ define([
                     if (!_self.options.type || _self.options.type === 'project') {
                         _self.setHeader();
 
-                        _self.projectView = new ProjectView({
+                        _self.projectView = _self.addView('ProjectView', ProjectView, {
                             model: _self.projectModel
                         });
                         _self.$el.append(_self.projectView.render().el);
                     } else {
                         if (_self.options.type = 'edit') {
-                            _self.projectEditView = new ProjectEditView({
+                            _self.projectEditView = _self.addView('ProjectEditView', ProjectEditView, {
                                 model: _self.projectModel
                             });
                             _self.$el.append(_self.projectEditView.render().el);

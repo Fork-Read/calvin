@@ -3,7 +3,7 @@ define([
 ], function ($, _, Backbone, Events, Quill, BaseView, viewTemplate) {
     var ProjectEditView = BaseView.extend({
         'className': 'edit-project-container',
-        initialize: function (options) {
+        onInitialize: function (options) {
             this.model = options.model;
         },
         events: {
@@ -72,6 +72,9 @@ define([
                     Events.trigger('router:navigate', 'project/' + _self.model.get('_id'));
                 }
             });
+        },
+        onClose: function () {
+            this.unbind();
         }
     });
     return ProjectEditView;

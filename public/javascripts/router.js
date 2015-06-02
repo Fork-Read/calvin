@@ -42,7 +42,7 @@ define([
         },
         _renderView: function (view) {
             if (this.currentView) {
-                this.currentView.remove();
+                this.currentView.close();
             }
             this.currentView = view;
             $('#content').html(view.render().el);
