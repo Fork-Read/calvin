@@ -76,7 +76,7 @@ var ProjectController = {
         });
     },
     addCategory: function (user, categoryData, callback) {
-        categoryData.category = changeCase.titleCase(categoryData.category);
+        categoryData.category = changeCase.pascalCase(categoryData.category);
 
         ProjectModel.findById(categoryData.projectId, function (err, project) {
             if (err) return console.error(err);
