@@ -3,8 +3,12 @@ define([
     'underscore',
     'backbone',
     'events',
-    'views/HeaderView'
-], function ($, _, Backbone, Events, HeaderView) {
+    'views/HeaderView',
+    'views/HomeView',
+    'views/CreateProjectView',
+    'views/ProjectContainerView',
+    'views/ProjectCategoryContainerView'
+], function ($, _, Backbone, Events, HeaderView, HomeView, CreateProjectView, ProjectContainerView, ProjectCategoryContainerView) {
     "use strict";
     var Router = Backbone.Router.extend({
         'routes': {
@@ -50,41 +54,40 @@ define([
         showHome: function () {
             var _self = this;
             _self._hideProjectsDropdown();
-            require(['views/HomeView'], function (HomeView) {
-                var homeView = new HomeView();
-                _self._renderView(homeView);
-            });
+
+            var homeView = new HomeView();
+            _self._renderView(homeView);
         },
         showCreateProject: function () {
             var _self = this;
-            require(['views/CreateProjectView'], function (CreateProjectView) {
-                var createProjectView = new CreateProjectView();
-                _self._renderView(createProjectView);
-            });
+            var createProjectView = new CreateProjectView();
+            _self._renderView(createProjectView);
         },
         showProject: function (id) {
             var _self = this;
             _self._showProjectsDropdown();
-            require(['views/ProjectContainerView'], function (ProjectContainerView) {
-                var projectContainerView = new ProjectContainerView({
-                    'projectId': id
-                });
-                _self._renderView(projectContainerView);
+            var projectContainerView = new ProjectContainerView({
+                'projectId': id
             });
+            _self._renderView(projectContainerView);
         },
         showEditProject: function (id) {
             var _self = this;
             _self._hideProjectsDropdown();
-            require(['views/ProjectContainerView'], function (ProjectContainerView) {
-                var projectContainerView = new ProjectContainerView({
-                    'projectId': id,
-                    'type': 'edit'
-                });
-                _self._renderView(projectContainerView);
+            var projectContainerView = new ProjectContainerView({
+                'projectId': id,
+                'type': 'edit'
             });
+            _self._renderView(projectContainerView);
         },
         showCategoryPage: function (id, category) {
-            console.log(id, name);
+            var _self = this;
+            _self._showProjectsDropdown();
+            var projectCategoryContainerView = new ProjectCategoryContainerView({
+                'projectId': id,
+                'category': category
+            });
+            _self._renderView(projectCategoryContainerView);
         }
     });
     return Router;
