@@ -19,7 +19,7 @@ define([
                 _self.addCategoryDialog.destroy();
             }
 
-            _self.$el.html(template());
+            _self.$el.html(template(null));
             _.each(_self.collection.models, function (model, index) {
                 var categoryItemView = _self.addView('ProjectCategoryItemView' + index, ProjectCategoryItemView, {
                     model: model
@@ -79,7 +79,11 @@ define([
 
             _self.$el.append(_self.addCategoryDialog.render().el);
 
-            _self.delegateEvents();
+            // Attach events after view has been rendered
+            setTimeout(function () {
+                _self.delegateEvents();
+            }, 0);
+
             return _self;
         },
         addNewCategory: function () {
