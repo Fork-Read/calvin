@@ -120,30 +120,6 @@ textarea {
     display: inline-block;
 }
 
-.floating-add-icon{
-    position: fixed;
-    bottom: 30px;
-    right: 50px;
-    width: 60px;
-    height: 60px;
-    background-color: #2196F3;
-    z-index: 500;
-    border-radius: 100%;
-    color: #FFFFFF;
-    padding: 18px 19px;
-    -webkit-box-shadow: 0px 1px 3px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-    -moz-box-shadow:    0px 1px 3px 1px #ccc;  /* Firefox 3.5 - 3.6 */
-    box-shadow:         0px 1px 3px 1px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.floating-add-icon:hover{
-    cursor: pointer;
-}
-
 .success{
     padding: 5px 10px;
     color: #4F8A10;
@@ -180,34 +156,51 @@ textarea {
     font-size: 18px;
 }
 
-.tile-1{
+.grid{
+    color: #F8F8F8;
+}
+
+.grid-item{
+    color: #F8F8F8;
+}
+
+.grid-item:nth-child(1n){
     background-color: #4CAF50;
 }
 
-.tile-1:hover{
+.grid-item:nth-child(1n):hover{
     background-color: #43A047;
 }
 
-.tile-2{
+.grid-item:nth-child(2n){
     background-color: #FF9800;
 }
 
-.tile-2:hover{
+.grid-item:nth-child(2n):hover{
     background-color: #FB8C00;
 }
 
-.tile-3{
+.grid-item:nth-child(3n){
     background-color: #2196F3;
 }
 
-.tile-3:hover{
+.grid-item:nth-child(3n):hover{
     background-color: #1E88E5;
 }
 
-.tile-4{
+.grid-item:nth-child(4n){
     background-color: #FFC107;
 }
 
-.tile-4:hover{
+.grid-item:nth-child(4n):hover{
     background-color: #FFB300;
+}
+
+.add-item{
+    color: #FFFFFF !important;
+    background-color: #2196F3 !important;
+}
+
+.add-item:hover{
+    background-color: #1E88E5 !important;
 }

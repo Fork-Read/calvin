@@ -2,17 +2,18 @@ var async = require('async'),
     changeCase = require('change-case'),
     ProjectModel = require('../models/ProjectModel'),
     UserModel = require('../models/UserModel'),
-    UserProjectModel = require('../models/UserProjectMappingModel');
+    UserProjectModel = require('../models/UserProjectMappingModel'),
+    ApiCategoryModel = require('../models/ApiCategoryModel');
 
 var ProjectController = {
     saveUserProject: function (user_id, projectDetails, callback) {
+
         var newProject = new ProjectModel({
             'name': changeCase.titleCase(projectDetails.name),
             'description': projectDetails.description,
             'github_url': projectDetails.github_url,
             'website': projectDetails.website,
-            'setup_instructions': '',
-            'api_categories': []
+            'setup_instructions': ''
         });
 
         newProject.save(function (err, project) {
@@ -32,6 +33,7 @@ var ProjectController = {
         });
     },
     getAllProjects: function (user, callback) {
+
         var projectArray = [];
         UserProjectModel.find({
             'user_id': user
@@ -53,12 +55,14 @@ var ProjectController = {
         });
     },
     getProject: function (user, projectId, callback) {
+
         ProjectModel.findById(projectId, function (err, project) {
             if (err) return console.error(err);
             callback(project);
         });
     },
     updateProject: function (user, projectId, projectData, callback) {
+
         ProjectModel.findById(projectId, function (err, project) {
             if (err) return console.error(err);
             project.name = changeCase.titleCase(projectData.name);
@@ -75,28 +79,49 @@ var ProjectController = {
             });
         });
     },
-    addCategory: function (user, categoryData, callback) {
-        categoryData.category = changeCase.pascalCase(categoryData.category);
+    getProjectCategories: function (user, project, callback) {
 
-        ProjectModel.findById(categoryData.projectId, function (err, project) {
+        UserProjectModel.findOne({
+            'user_id': user,
+            'project_id': project
+        }, function (err, projectMapping) {
+            if (err) return console.error(err);
+            if (projectMapping) {
+                ApiCategoryModel.find({
+                    'project_id': project
+                }, function (err, categoryList) {
+                    if (err) return console.error(err);
+                    callback(categoryList);
+                });
+            } else {
+                callback([]);
+            }
+        });
+    },
+    addCategory: function (user, category, callback) {
+
+        category.name = changeCase.pascalCase(category.name);
+
+        ApiCategoryModel.findOne({
+            'project_id': category.projectId,
+            'name': category.name
+        }, function (err, categoryItem) {
             if (err) return console.error(err);
 
-            if (project.api_categories.indexOf(categoryData.category) === -1) {
-                project.api_categories.push(categoryData.category);
-
-                ProjectModel.update({
-                    '_id': categoryData.projectId
-                }, {
-                    'api_categories': project.api_categories
-                }, function (err, numAffected) {
-                    if (err) return console.error(err);
-                    callback({
-                        'newCategory': categoryData.category
-                    });
+            if (!categoryItem) {
+                var newCategory = new ApiCategoryModel({
+                    'project_id': category.projectId,
+                    'name': category.name,
+                    'base_url': category.baseUrl,
+                    'description': category.description
                 });
 
+                newCategory.save(function (err, savedCategory) {
+                    if (err) return console.error(err);
+                    callback(savedCategory);
+                });
             } else {
-                callback(project);
+                callback(null);
             }
         });
     }

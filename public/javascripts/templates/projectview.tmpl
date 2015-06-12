@@ -27,21 +27,8 @@
 	</div>
 </div>
 <% } %>
-<% if(data.project.api_categories.length) { %>
 <div class="margin-10 border-bottom">
 	<h2 class="font-18">API Categories</h2>
-	<ul class="category-list">
-		<% _.each(data.project.api_categories,function(category, index){ %>
-			<a href="#project/<%= data.project._id %>/category/<%= category %>" class="category-list-item tile-<%= (index % 4) + 1 %>"><li><i class="fa fa-angle-double-right"></i> <%= category %></li></a>
-		<% }); %>
-	</ul>
+	<div id="category-list"></div>
 	<div class="clear"></div>
-</div>
-<% } %>
-<div class="floating-add-icon add-category" title="Add Category">
-	<i class="fa fa-plus fa-2x"></i>
-</div>
-<div class="add-category-dialog">
-	<input type="text" class="new-category-input" placeholder="enter category name.." />
-	<p class="add-category-feedback" style="display:none"></p>
 </div>

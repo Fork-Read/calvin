@@ -79,9 +79,10 @@ mongoose.connect(uristring, function (err, res) {
     }
 });
 
-var routes = require('./routes/index'),
+var index = require('./routes/index'),
     users = require('./routes/users'),
-    projects = require('./routes/projects');
+    projects = require('./routes/projects'),
+    apis = require('./routes/apis');
 
 var app = express();
 
@@ -109,9 +110,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', routes);
+app.use('/', index);
 app.use('/api/users', users);
 app.use('/api/project', projects);
+app.use('/api/api', apis);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

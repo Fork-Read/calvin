@@ -6,7 +6,10 @@ function isAuthenticated(req, res, next) {
     if (req.user) {
         next();
     } else {
-        res.redirect('/register');
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify({
+            error: 'Authentication Failure'
+        }));
     }
 }
 

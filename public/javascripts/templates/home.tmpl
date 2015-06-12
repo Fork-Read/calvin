@@ -1,8 +1,8 @@
 <div class="home-container">
 	<h1 class="projects-heading">Projects:</h1>
-	<div class="project-lists">
+	<div class="project-lists grid">
 		<% _.each(data.projects, function(project, index) { %>
-			<a href="#project/<%= project._id %>" class="project-list-item tile-<%= (index % 4) + 1 %>"><%= project.name %></a>
+			<a href="#project/<%= project._id %>" class="project-list-item grid-item"><%= project.name %></a>
 		<% }); %>
 	</div>
 </div>

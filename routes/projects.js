@@ -6,7 +6,10 @@ function isAuthenticated(req, res, next) {
     if (req.user) {
         next();
     } else {
-        res.redirect('/register');
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify({
+            error: 'Authentication Failure'
+        }));
     }
 }
 
@@ -39,6 +42,14 @@ router.put('/:id', isAuthenticated, function (req, res, next) {
     ProjectController.updateProject(req.user._id, req.param('id'), req.body, function (project) {
         res.set('Content-Type', 'application/json');
         res.send(JSON.stringify(project));
+    });
+});
+
+router.get('/:projectId/category/all', isAuthenticated, function (req, res, next) {
+
+    ProjectController.getProjectCategories(req.user._id, req.params.projectId, function (categoryList) {
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(categoryList));
     });
 });
 

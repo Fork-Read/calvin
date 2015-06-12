@@ -2,6 +2,7 @@ var UserModel = require('../models/UserModel');
 
 var UserController = {
     getUserById: function (id, callback) {
+
         UserModel.findOne({
             '_id': id
         }, function (err, user) {
@@ -10,6 +11,7 @@ var UserController = {
         });
     },
     getUserByEmail: function (email, callback) {
+
         UserModel.findOne({
             'email': email
         }, function (err, user) {
