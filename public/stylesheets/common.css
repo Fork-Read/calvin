@@ -97,6 +97,7 @@ textarea {
     display: inline-block;
     padding: 10px 12px;
     text-decoration: none;
+    border-radius: 3px;
 }
 
 .btn-blue{
