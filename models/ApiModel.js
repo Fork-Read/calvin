@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 
 var apiSchema = mongoose.Schema({
-    name: String,
+    category_id: String,
+    url: String,
+    type: String,
+    sentData: String,
+    responseData: String,
     description: String,
-    github_url: String,
-    website: String,
-    setup_instructions: String,
-    api_categories: Array
 });
 
 module.exports = mongoose.model('Api', apiSchema);

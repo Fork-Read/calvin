@@ -13,17 +13,20 @@ function isAuthenticated(req, res, next) {
     }
 }
 
-router.get('/category/apis/:projectId', isAuthenticated, function (req, res, next) {
+router.get('/:projectId/apis/:category', isAuthenticated, function (req, res, next) {
 
-    res.set('Content-Type', 'application/json');
-    res.send(JSON.stringify({}));
-
+    ApiController.getAll(req.params.projectId, req.params.category, function (apiList) {
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(apiList));
+    });
 });
 
-router.get('/category/api/:id', isAuthenticated, function (req, res, next) {
+router.post('/:projectId/:category/api', isAuthenticated, function (req, res, next) {
 
-    res.set('Content-Type', 'application/json');
-    res.send(JSON.stringify({}));
+    ApiController.save(req.params.projectId, req.params.category, req.body, function (apiList) {
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(apiList));
+    });
 
 });
 
