@@ -81,9 +81,10 @@
 	cursor: pointer;
 }
 
-.add-category-dialog input{
+.add-category-dialog input, .add-category-dialog textarea{
 	margin: auto;
 	display: block;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	font-size: 14px;
 }
