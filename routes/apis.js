@@ -13,9 +13,9 @@ function isAuthenticated(req, res, next) {
     }
 }
 
-router.get('/:projectId/apis/:category', isAuthenticated, function (req, res, next) {
+router.get('/:projectId/apis/:categoryId', isAuthenticated, function (req, res, next) {
 
-    ApiController.getAll(req.params.projectId, req.params.category, function (apiList) {
+    ApiController.getAll(req.params.projectId, req.params.categoryId, function (apiList) {
         res.set('Content-Type', 'application/json');
         res.send(JSON.stringify(apiList));
     });

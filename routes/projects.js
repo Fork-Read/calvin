@@ -53,6 +53,14 @@ router.get('/:projectId/category/all', isAuthenticated, function (req, res, next
     });
 });
 
+router.get('/:projectId/category/:categoryName', isAuthenticated, function (req, res, next) {
+
+    ProjectController.getCategory(req.user._id, req.params.projectId, req.params.categoryName, function (category) {
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(category));
+    });
+});
+
 router.post('/category/add', function (req, res, next) {
 
     ProjectController.addCategory(req.user._id, req.body, function (categoryData) {

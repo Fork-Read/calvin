@@ -39,23 +39,12 @@ var ApiController = {
             }
         });
     },
-    getAll: function (projectId, categoryName, callback) {
-        ApiCategoryModel.findOne({
-            'project_id': projectId,
-            'name': categoryName
-        }, function (err, category) {
+    getAll: function (projectId, categoryId, callback) {
+        ApiModel.find({
+            'category_id': categoryId
+        }, function (err, apiList) {
             if (err) return console.error(err);
-
-            if (category) {
-                ApiModel.find({
-                    'category_id': category._id
-                }, function (err, apiList) {
-                    if (err) return console.error(err);
-                    callback(apiList);
-                });
-            } else {
-                callback();
-            }
+            callback(apiList);
         });
     }
 }

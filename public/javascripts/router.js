@@ -7,16 +7,18 @@ define([
     'views/HomeView',
     'views/CreateProjectView',
     'views/ProjectContainerView',
-    'views/ProjectApiContainerView'
-], function ($, _, Backbone, Events, HeaderView, HomeView, CreateProjectView, ProjectContainerView, ProjectApiContainerView) {
+    'views/ProjectApiContainerView',
+    'views/AddApiView'
+], function ($, _, Backbone, Events, HeaderView, HomeView, CreateProjectView, ProjectContainerView, ProjectApiContainerView, AddApiView) {
     "use strict";
     var Router = Backbone.Router.extend({
         'routes': {
             '': 'showHome',
+            'createProject': 'showCreateProject',
             'project/:id': 'showProject',
             'project/:id/edit': 'showEditProject',
             'project/:projectId/category/:category': 'showCategoryPage',
-            'createProject': 'showCreateProject'
+            'category/:categoryId/api/add': 'showAddApi'
         },
         initialize: function () {
             console.log('Router Initialized');
@@ -85,9 +87,19 @@ define([
             _self._showProjectsDropdown();
             var projectApiContainerView = new ProjectApiContainerView({
                 'projectId': projectId,
-                'categoryName': category
+                'category': {
+                    'name': category
+                }
             });
             _self._renderView(projectApiContainerView);
+        },
+        showAddApi: function (categoryId) {
+            var _self = this;
+            _self._hideProjectsDropdown();
+            var addApiView = new AddApiView({
+                'categoryId': categoryId,
+            });
+            _self._renderView(addApiView);
         }
     });
     return Router;

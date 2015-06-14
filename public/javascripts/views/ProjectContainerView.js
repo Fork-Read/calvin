@@ -2,7 +2,7 @@ define([
     'jquery', 'underscore', 'backbone', 'views/BaseView', 'views/ProjectView', 'views/ProjectEditView', 'models/ProjectModel'
 ], function ($, _, Backbone, BaseView, ProjectView, ProjectEditView, ProjectModel) {
     var ProjectContainerView = BaseView.extend({
-        'className': 'project-container',
+        'className': 'container',
         onInitialize: function (options) {
             var _self = this;
             this.options = options;

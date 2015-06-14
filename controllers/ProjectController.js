@@ -98,6 +98,15 @@ var ProjectController = {
             }
         });
     },
+    getCategory: function (user, projectId, categoryName, callback) {
+        ApiCategoryModel.findOne({
+            'project_id': projectId,
+            'name': categoryName
+        }, function (err, category) {
+            if (err) return console.error(err);
+            callback(category);
+        });
+    },
     addCategory: function (user, category, callback) {
 
         category.name = changeCase.pascalCase(category.name);

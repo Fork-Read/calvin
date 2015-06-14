@@ -6,13 +6,13 @@
 	font-size: 13px;
 }
 
-.project-container{
+.container{
 	margin:auto;
 	margin-top: 50px;
 	width: 1000px;
 }
 
-.project-name{
+.title{
 	color: #607D8B;
 	font-weight: normal;
 	font-size: 20px;
@@ -32,13 +32,13 @@
 	color: #1E1E1E;
 }
 
-.edit-project-button{
+.edit-project-button, .edit-category-button{
 	color: #1E1E1E;
 	position: relative;
 	bottom: 3px;
 }
 
-.edit-project-button:hover{
+.edit-project-button:hover, .edit-category-button:hover{
 	 color: #00B7FF;
 }
 
