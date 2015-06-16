@@ -21,9 +21,9 @@ router.get('/:projectId/apis/:categoryId', isAuthenticated, function (req, res, 
     });
 });
 
-router.post('/:projectId/:category/api', isAuthenticated, function (req, res, next) {
+router.post('/:projectId/category/:categoryName/api', isAuthenticated, function (req, res, next) {
 
-    ApiController.save(req.params.projectId, req.params.category, req.body, function (apiList) {
+    ApiController.save(req.params.projectId, req.params.categoryName, req.body, function (apiList) {
         res.set('Content-Type', 'application/json');
         res.send(JSON.stringify(apiList));
     });

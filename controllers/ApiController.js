@@ -4,15 +4,18 @@ var changeCase = require('change-case'),
 
 var ApiController = {
     save: function (projectId, categoryName, data, callback) {
+
         ApiCategoryModel.findOne({
-            'project_id': projectId,
-            'name': categoryName
+            'name': categoryName,
+            'project_id': projectId
         }, function (err, category) {
             if (err) return console.error(err);
 
             if (category) {
                 ApiModel.findOne({
-                    'url': data.url
+                    'category_id': category._id,
+                    'url': data.url,
+                    'type': data.type
                 }, function (err, savedApi) {
                     if (err) return console.error(err);
 
@@ -21,8 +24,9 @@ var ApiController = {
                             'category_id': category._id,
                             'url': data.url,
                             'type': data.type,
-                            'sentData': data.sentData,
-                            'responseData': data.responseData,
+                            'queryParams': data.queryParams,
+                            'postData': data.postData,
+                            'response': data.response,
                             'description': data.description
                         });
 

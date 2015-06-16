@@ -4,8 +4,9 @@ var apiSchema = mongoose.Schema({
     category_id: String,
     url: String,
     type: String,
-    sentData: String,
-    responseData: String,
+    queryParams: Array, // String Array
+    postData: String, // JSON String
+    response: String, // JSON String
     description: String,
 });
 

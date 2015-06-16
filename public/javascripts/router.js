@@ -18,7 +18,7 @@ define([
             'project/:id': 'showProject',
             'project/:id/edit': 'showEditProject',
             'project/:projectId/category/:category': 'showCategoryPage',
-            'category/:categoryId/api/add': 'showAddApi'
+            'project/:projectId/category/:categoryName/api/add': 'showAddApi'
         },
         initialize: function () {
             console.log('Router Initialized');
@@ -93,11 +93,12 @@ define([
             });
             _self._renderView(projectApiContainerView);
         },
-        showAddApi: function (categoryId) {
+        showAddApi: function (projectId, categoryName) {
             var _self = this;
             _self._hideProjectsDropdown();
             var addApiView = new AddApiView({
-                'categoryId': categoryId,
+                'projectId': projectId,
+                'categoryName': categoryName,
             });
             _self._renderView(addApiView);
         }

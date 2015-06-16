@@ -1,3 +1,8 @@
+.create-project-form{
+	margin: auto;
+	width:300px;
+}
+
 .create-project-sidebar-container {
     display: inline-block;
     width: 450px;

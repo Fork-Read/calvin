@@ -3,7 +3,7 @@ define([
 ], function (Backbone) {
     var ProjectApiModel = Backbone.Model.extend({
         'idAttribute': '_id',
-        'urlRoot': '/api/project',
+        'urlRoot': '/api/routes',
         initialize: function () {}
     });
     return ProjectApiModel;

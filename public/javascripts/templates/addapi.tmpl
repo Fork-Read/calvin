@@ -1,1 +1,38 @@
-<h1 class="title">Add a new API</h1>
+<div class="container">
+		<form class="form create-api-form">
+			<div class="margin-10 type-select">
+				<label for="request-type">Request Type</label>
+				<span class="btn btn-grey request-type selected-type">GET</span>
+				<span class="btn btn-grey request-type">POST</span>
+				<span class="btn btn-grey request-type">PUT</span>
+				<span class="btn btn-grey request-type">DELETE</span>
+			</div>
+			
+			<div class="margin-10">
+				<label for="url">Request URL</label>
+				<input type="text" name="url" required/>
+			</div>
+			
+			<div class="margin-10">
+				<label for="data" class="block">Query Params</label>
+				<div class="query-params">
+				</div>
+				<textarea type="text" name="response" rows="10" class="post-data width-650" style="display:none" required></textarea>
+				<i class="fa fa-plus btn btn-blue margin-10 add-query-params"></i>
+			</div>
+			
+			<div class="margin-10">
+				<label for="response" class="block">JSON Response</label>
+				<textarea type="text" name="response" rows="10" class="width-650" required></textarea>
+			</div>
+
+			<div class="margin-10">
+				<label for="descrition" class="block">Description</label>
+				<textarea type="text" name="description" rows="5" class="width-650"></textarea>
+			</div>
+
+			<div class="margin-10">
+				<input class="create-api-submit" type="button" value="Submit" />
+			</div>
+		</form>
+</div>

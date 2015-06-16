@@ -21,7 +21,8 @@ define([
                     var template = _.template(viewTemplate);
 
                     _self.$el.html(template({
-                        category: _self.options.category
+                        category: _self.options.category,
+                        projectId: _self.options.projectId
                     }));
 
                     _self.apiCollection.url = '/api/routes/' + _self.options.projectId + '/apis/' + _self.options.category._id;
@@ -32,6 +33,7 @@ define([
                             var apiListView = _self.addView('ProjectApiListView', ProjectApiListView, {
                                 'collection': _self.apiCollection
                             });
+                            console.log(_self.apiCollection);
                             _self.$el.find('.api-list-container').append(apiListView.render().el);
                         }
                     });

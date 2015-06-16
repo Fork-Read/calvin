@@ -1,5 +1,5 @@
 define([
-    'jquery', 'underscore', 'backbone', 'quill', 'views/BaseView', 'text!templates/categoryitem.tmpl'
+    'jquery', 'underscore', 'backbone', 'quill', 'views/BaseView', 'text!templates/apiitem.tmpl'
 ], function ($, _, Backbone, Quill, BaseView, viewTemplate) {
     var ProjectApiItemView = BaseView.extend({
         'tagName': 'li',
@@ -11,7 +11,7 @@ define([
         render: function () {
             var _self = this;
             var template = _.template(viewTemplate);
-
+            console.log(_self.model.toJSON());
             _self.$el.html(template({
                 api: _self.model.toJSON()
             }));

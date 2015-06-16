@@ -11,6 +11,10 @@ a {
     text-decoration: none;
 }
 
+li{
+    list-style: none;
+}
+
 .float-left{
     float: left;
 }
@@ -42,17 +46,12 @@ a {
     padding-bottom: 30px;
 }
 
-.form {
-    margin: auto;
-    width: 300px;
-    padding: 20px;
-    padding-left: 0px;
-}
-
 .form label {
     display: inline-block;
     color: #111111;
-    margin-bottom: 5px;
+    vertical-align: middle;
+    width: 200px;
+    margin: 10px;
 }
 
 input[type='text'] {
@@ -61,7 +60,9 @@ input[type='text'] {
     padding: 8px 12px;
     margin-bottom: 15px;
     border: 1px solid #C9C9C9;
-    outline: none
+    outline: none;
+    border-radius: 3px;
+    margin: 10px;
 }
 
 input[type='text']:focus{
@@ -75,9 +76,11 @@ textarea {
     padding: 8px 12px;
     margin-bottom: 15px;
     border: 1px solid #C9C9C9;
+    border-radius: 3px;
+    margin: 10px;
 }
 
-.form input[type='button'] {
+.form input[type='button'], .form input[type='submit'] {
     width: 297px;
     font-size: 14px;
     padding: 8px 12px;
@@ -88,7 +91,7 @@ textarea {
     transition: background-color 0.5s ease;
 }
 
-.form input[type='button']:hover{
+.form input[type='button']:hover, .form input[type='submit']:hover{
     cursor: pointer;
     background-color: #3949AB;
 }
@@ -105,12 +108,26 @@ textarea {
     color:#FFFFFF;
 }
 
+.btn-grey{
+    background-color: #797979;
+    color: #F8F8F8;
+}
+
 .btn:hover{
     cursor: pointer;
 }
 
 .btn-blue:hover{
     background-color: #3949AB;
+}
+
+.btn-red{
+    background-color: #F44336;
+    color: #F8F8F8;
+}
+
+.btn-red:hover{
+    background-color: #E53935;
 }
 
 .margin-10{
@@ -208,4 +225,12 @@ textarea {
 
 .inline{
     display: inline-block;
+}
+
+.block{
+    display: block !important;
+}
+
+.width-650{
+    width: 650px !important;
 }
