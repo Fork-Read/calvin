@@ -5,30 +5,24 @@ define([
         'tagName': 'ul',
         'className': 'api-list',
         onInitialize: function (options) {
-            var thisView = this;
-            thisView.collection = options.collection;
+            var _self = this;
+            _self.collection = options.collection;
         },
         render: function () {
-            var thisView = this;
+            var _self = this;
 
-            console.log(thisView.collection.models);
-
-            _.each(thisView.collection.models, function (model, index) {
-                console.log(models);
-                var apiItemView = thisView.addView('ProjectApiItemView' + index, ProjectApiItemView, {
+            _.each(_self.collection.models, function (model, index) {
+                var apiItemView = _self.addView('ProjectApiItemView' + index, ProjectApiItemView, {
                     model: model
                 });
-                thisView.$el.append(apiItemView.render().el);
+                _self.$el.append(apiItemView.render().el);
             });
 
-            return thisView;
+            return _self;
         },
         onClose: function () {
-            var thisView = this;
-            if (thisView.addCategoryDialog) {
-                thisView.addCategoryDialog.destroy();
-            }
-            thisView.unbind();
+            var _self = this;
+            _self.unbind();
         }
     });
     return ProjectApiListView;

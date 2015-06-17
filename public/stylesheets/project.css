@@ -59,11 +59,12 @@
 	display: block;
 }
 
-.category-list, .api-list{
-	list-style: none;
+.category-list{
+	padding: 0;
+	list-style-type: none;
 }
 
-.category-list-item, .api-list-item{
+.category-list-item{
 	float: left;
 	margin: 10px;
 	padding: 6px 12px;
@@ -73,11 +74,11 @@
 	margin-right: 10px;
 }
 
-.category-list-item a, .api-list-item a{
+.category-list-item a{
 	color: #F8F8F8;
 }
 
-.category-list-item:hover, .api-list-item:hover{
+.category-list-item:hover{
 	cursor: pointer;
 }
 

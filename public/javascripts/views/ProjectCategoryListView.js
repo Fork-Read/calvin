@@ -18,7 +18,7 @@ define([
             if (_self.addCategoryDialog) {
                 _self.addCategoryDialog.destroy();
             }
-
+            console.log(_self.collection.toJSON());
             _self.$el.html(template(null));
             _.each(_self.collection.models, function (model, index) {
                 var categoryItemView = _self.addView('ProjectCategoryItemView' + index, ProjectCategoryItemView, {

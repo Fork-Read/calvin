@@ -3,7 +3,7 @@ define([
 ], function ($, _, Backbone, Quill, BaseView, viewTemplate) {
     var ProjectApiItemView = BaseView.extend({
         'tagName': 'li',
-        'className': 'api-list-item grid-item',
+        'className': 'api-list-item',
         onInitialize: function (options) {
             var _self = this;
             _self.model = options.model;
@@ -11,7 +11,6 @@ define([
         render: function () {
             var _self = this;
             var template = _.template(viewTemplate);
-            console.log(_self.model.toJSON());
             _self.$el.html(template({
                 api: _self.model.toJSON()
             }));

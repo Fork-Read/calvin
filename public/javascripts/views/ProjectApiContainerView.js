@@ -33,7 +33,6 @@ define([
                             var apiListView = _self.addView('ProjectApiListView', ProjectApiListView, {
                                 'collection': _self.apiCollection
                             });
-                            console.log(_self.apiCollection);
                             _self.$el.find('.api-list-container').append(apiListView.render().el);
                         }
                     });
