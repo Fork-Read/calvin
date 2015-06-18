@@ -28,6 +28,8 @@
 	padding-left: 10px;
 	padding: 10px 16px;
 	width: 100%;
+	-webkit-transition: color 0.5s; /* Safari */
+    transition: color 0.5s;
 }
 
 .api-list-item-get .url:hover, .api-list-item-post .url:hover, .api-list-item-put .url:hover, .api-list-item-delete .url:hover{
