@@ -13,6 +13,14 @@ function isAuthenticated(req, res, next) {
     }
 }
 
+router.get('/:id', isAuthenticated, function (req, res, next) {
+    console.log('dfjhvjksdbvklsd.v');
+    ApiController.getApi(req.params.id, function (api) {
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(api));
+    });
+});
+
 router.get('/:projectId/apis/:categoryId', isAuthenticated, function (req, res, next) {
 
     ApiController.getAll(req.params.projectId, req.params.categoryId, function (apiList) {

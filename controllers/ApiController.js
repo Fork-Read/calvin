@@ -50,6 +50,12 @@ var ApiController = {
             if (err) return console.error(err);
             callback(apiList);
         });
+    },
+    getApi: function (id, callback) {
+        ApiModel.findById(id, function (err, api) {
+            if (err) return console.error(err);
+            callback(api);
+        });
     }
 }
 

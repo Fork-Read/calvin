@@ -12,7 +12,7 @@ define([
         events: {
             'click .request-type': 'selectRequestType',
             'click .create-api-submit': 'saveNewApi',
-            'click .add-query-params': 'addQueryParams',
+            'click .add-more-query-params-buttom': 'addQueryParams',
             'click .remove-query-params': 'removeQueryParam'
         },
         render: function () {
@@ -35,14 +35,14 @@ define([
 
             switch ($targetEle.text()) {
             case 'GET':
-                thisView.$('.query-params').show();
-                thisView.$('.post-data').hide();
                 thisView.$('.add-query-params').show();
+                thisView.$('.add-post-data').hide();
+                thisView.$('.add-more-query-params-buttom').show();
                 break;
             case 'POST':
-                thisView.$('.query-params').hide();
-                thisView.$('.post-data').show();
                 thisView.$('.add-query-params').hide();
+                thisView.$('.add-post-data').show();
+                thisView.$('.add-more-query-params-buttom').hide();
                 break;
             }
         },
@@ -62,7 +62,7 @@ define([
                 returnObj.queryParams = thisView.getQueryParams()
                 break;
             case 'POST':
-                returnObj.postData = $.trim(thisView.$('.post-data').val());
+                returnObj.postData = $.trim(thisView.$('.add-post-data').val());
                 break;
             }
             return returnObj;
